@@ -59,8 +59,7 @@ class SearchViewController: UIViewController {
             activityIndicatorLogin.stopAnimating()
             return
         } else {
-//            Constants.SpotifyParameterValues.Username = usernameTextField.text!
-//            Constants.SpotifyParameterValues.Password = passwordTextField.text!
+            Constants.NewsParameterValues.SearchText = searchTextField.text!
             
         }
         
