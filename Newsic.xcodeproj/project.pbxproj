@@ -11,16 +11,15 @@
 		13D48E20218D38D000D77576 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13D48E1E218D38D000D77576 /* Main.storyboard */; };
 		13D48E22218D38D300D77576 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13D48E21218D38D300D77576 /* Assets.xcassets */; };
 		13D48E25218D38D300D77576 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13D48E23218D38D300D77576 /* LaunchScreen.storyboard */; };
-		13D48E2D218D43E600D77576 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E2C218D43E600D77576 /* LoginViewController.swift */; };
 		13D48E31218D443E00D77576 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E30218D443E00D77576 /* NewsTableViewController.swift */; };
 		13D48E33218D446C00D77576 /* SavedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E32218D446C00D77576 /* SavedTableViewController.swift */; };
 		13D48E35218D44BC00D77576 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E34218D44BC00D77576 /* ArticleViewController.swift */; };
 		13D48E38218D452A00D77576 /* NewsAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E37218D452A00D77576 /* NewsAPIManager.swift */; };
 		13D48E3A218D456F00D77576 /* NewsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E39218D456F00D77576 /* NewsClient.swift */; };
-		13D48E3C218D459700D77576 /* SpotifyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E3B218D459700D77576 /* SpotifyClient.swift */; };
 		13D48E3F218D462700D77576 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E3E218D462700D77576 /* GCD.swift */; };
 		13D48E41218D465F00D77576 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E40218D465F00D77576 /* Constants.swift */; };
 		13D48E43218D468D00D77576 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E42218D468D00D77576 /* GlobalVariables.swift */; };
+		13EC2223218E25E30068E260 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EC2222218E25E30068E260 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,16 +29,15 @@
 		13D48E21218D38D300D77576 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13D48E24218D38D300D77576 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13D48E26218D38D300D77576 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13D48E2C218D43E600D77576 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		13D48E30218D443E00D77576 /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		13D48E32218D446C00D77576 /* SavedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTableViewController.swift; sourceTree = "<group>"; };
 		13D48E34218D44BC00D77576 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		13D48E37218D452A00D77576 /* NewsAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPIManager.swift; sourceTree = "<group>"; };
 		13D48E39218D456F00D77576 /* NewsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsClient.swift; sourceTree = "<group>"; };
-		13D48E3B218D459700D77576 /* SpotifyClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyClient.swift; sourceTree = "<group>"; };
 		13D48E3E218D462700D77576 /* GCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCD.swift; sourceTree = "<group>"; };
 		13D48E40218D465F00D77576 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		13D48E42218D468D00D77576 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		13EC2222218E25E30068E260 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +86,7 @@
 		13D48E36218D44D600D77576 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				13D48E2C218D43E600D77576 /* LoginViewController.swift */,
+				13EC2222218E25E30068E260 /* SearchViewController.swift */,
 				13D48E30218D443E00D77576 /* NewsTableViewController.swift */,
 				13D48E32218D446C00D77576 /* SavedTableViewController.swift */,
 				13D48E34218D44BC00D77576 /* ArticleViewController.swift */,
@@ -99,7 +97,6 @@
 		13D48E3D218D45D700D77576 /* ClientNetworks */ = {
 			isa = PBXGroup;
 			children = (
-				13D48E3B218D459700D77576 /* SpotifyClient.swift */,
 				13D48E37218D452A00D77576 /* NewsAPIManager.swift */,
 				13D48E39218D456F00D77576 /* NewsClient.swift */,
 			);
@@ -187,9 +184,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				13D48E3A218D456F00D77576 /* NewsClient.swift in Sources */,
-				13D48E2D218D43E600D77576 /* LoginViewController.swift in Sources */,
+				13EC2223218E25E30068E260 /* SearchViewController.swift in Sources */,
 				13D48E1B218D38D000D77576 /* AppDelegate.swift in Sources */,
-				13D48E3C218D459700D77576 /* SpotifyClient.swift in Sources */,
 				13D48E35218D44BC00D77576 /* ArticleViewController.swift in Sources */,
 				13D48E41218D465F00D77576 /* Constants.swift in Sources */,
 				13D48E43218D468D00D77576 /* GlobalVariables.swift in Sources */,
