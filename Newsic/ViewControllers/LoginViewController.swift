@@ -8,7 +8,6 @@
 
 import UIKit
 import Foundation
-import SpotifyLogin
 
 class LoginViewController: UIViewController {
     

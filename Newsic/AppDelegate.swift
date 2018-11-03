@@ -7,21 +7,15 @@
 //
 
 import UIKit
-import SpotifyLogin
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        SpotifyLogin.shared.configure(clientID: Constants.SpotifyParameterValues.ClientID, clientSecret: Constants.SpotifyParameterValues.ClientSecret, redirectURL: Constants.SpotifyParameterValues.Redirect_URI! as URL)
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
         return true
-    }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let handled = SpotifyLogin.shared.applicationOpenURL(url) { (error) in }
-        return handled
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
