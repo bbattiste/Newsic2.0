@@ -13,15 +13,12 @@ class NewsAPIManager {
     //attribution: Wyatt Mufson: https://github.com/WyattMufson/NewsAPI-Swift
     
     // TODO: If no article pops up, turn label that says "Not all of your top listened to artists have current news!" - List top artists without news.
-    func getArticles(band: String, oldestArticleDate: String, key: String, completionHandler: @escaping (Data) -> ()) {
-        // TODO: Not sure this will work, because if band name is searched, it will not matter to include other words...: Make q = section: q=\(band)OR\(band)SPACEbandOR\(band)SPACEtour& and even possibly add \(band)SPACEmusic&
-        // sortby can be:
-        //relevancy = articles more closely related to q come first.
-        //popularity = articles from popular sources and publishers come first.
-        //publishedAt = newest articles come first. Default
-        let site = "https://newsapi.org/v2/everything?sortBy=relevancy&language=en&pageSize=1&q=\(band)&from=\(oldestArticleDate)&apiKey=\(key)"
+    func getArticles(completionHandler: @escaping (Data) -> ()) {
+        
+        let site = "https://newsapi.org/v2/\(Constants.NewsParameterValues.EndPoint)?\(Constants.NewsParameterKeys.SortBy)=\(Constants.NewsParameterValues.SortBy)&\(Constants.NewsParameterKeys.Language)=\(Constants.NewsParameterValues.Language)&\(Constants.NewsParameterKeys.PageSize)=\(Constants.NewsParameterValues.PageSize)&\(Constants.NewsParameterKeys.SearchText)=\(Constants.NewsParameterValues.SearchText)&\(Constants.NewsParameterKeys.FromDate)=\(Constants.NewsParameterValues.FromDate)&\(Constants.NewsParameterKeys.APIKey)=\(Constants.NewsParameterValues.APIKey)"
         let url = URL(string: site)
         var request = URLRequest(url: url!)
+        print("request = \(request)")
         
         request.httpMethod = "GET"
         let session = URLSession.shared

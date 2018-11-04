@@ -18,19 +18,18 @@ class NewsClient: NSObject {
     
     func requestBandArticles(completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void) {
         
-        let key = "9c9d15331d164c079625dddab874cb90"
         let nam = NewsAPIManager() // Initialize News API Manager
         let band = "metallica" // TODO = Make band URL-encoded
         
         let monthsToSubtract = -1
         let oneMonthAgoDate = Calendar.current.date(byAdding: .month, value: monthsToSubtract, to: Date())
-        let oneMonthAgoUsableString = usableDate(date: oneMonthAgoDate!)
+        Constants.NewsParameterValues.FromDate = usableDate(date: oneMonthAgoDate!)
         
         //TODO: to become userdefaults
         //var currentArticles = [UserDefaults.standard.object(forKey: "NewsAPI-Swift Articles")]
         var currentArticles = GlobalVariables.articleArray
         
-        nam.getArticles(band: band, oldestArticleDate: oneMonthAgoUsableString, key: key) {data in // Getting articles from "everything" search
+        nam.getArticles() {data in // Getting articles from "everything" search
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 
@@ -43,7 +42,7 @@ class NewsClient: NSObject {
                         //print(currentArticles)
                         GlobalVariables.articleArray = currentArticles
                         print("GlobalVariables count in call = \(GlobalVariables.articleArray.count)")
-                        //print(GlobalVariables.articleArray)
+                        print("GlobalVariables.articleArray = \(GlobalVariables.articleArray)")
                         
                         // If wanting more than 1 article per artist, use this to not duplicate: !currentArticles.contains(article) {
                         //currentArticles.append(article)
