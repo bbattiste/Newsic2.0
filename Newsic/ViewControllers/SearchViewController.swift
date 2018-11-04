@@ -59,8 +59,9 @@ class SearchViewController: UIViewController {
             activityIndicatorLogin.stopAnimating()
             return
         } else {
-            Constants.NewsParameterValues.SearchText = searchTextField.text!
-            
+            if let searchString = searchTextField.text {
+                Constants.NewsParameterValues.SearchText = searchString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+            }
         }
         
         // postSession()
