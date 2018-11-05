@@ -52,11 +52,13 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath)
-        let articleForCell = testArray[(indexPath as NSIndexPath).row]
+        let articleForCell = GlobalVariables.articleArray[(indexPath as NSIndexPath).row]
         
         print("cellForRowAt called")
         // Configure the cell...
-        cell.textLabel?.text = articleForCell
+        
+        
+        cell.textLabel?.text = articleForCell["title"] as? String
         
         
         return cell

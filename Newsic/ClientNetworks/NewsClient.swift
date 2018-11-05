@@ -34,15 +34,29 @@ class NewsClient: NSObject {
                 let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 
                 if let jsonArray = json as? [String: AnyObject] {
+                    
+                    
                     if let articles = jsonArray["articles"] as? [[String : AnyObject]] {
-                        for article in articles { // Get each article, only one as of now
-                            currentArticles.append(article)
-                            //print(String(describing: article))
-                        }
+                        
+//                        for article in articles { // Get each article, only one as of now
+//                            currentArticles.append(article)
+//                            
+//                            //guard let rawArticle = articles[0]
+//                            
+//                            print("article = \(String(describing: article))")
+//                            print("title = \(String(describing: article["title"]))")
+//                        }
                         //print(currentArticles)
+                        
+                        // TODO: Pick one of the 2 below
                         GlobalVariables.articleArray = currentArticles
+                        GlobalVariables.articleArray = articles
+                        
                         print("GlobalVariables count in call = \(GlobalVariables.articleArray.count)")
                         print("GlobalVariables.articleArray = \(GlobalVariables.articleArray)")
+                        for article in articles {
+                            print("title = \(String(describing: article["title"]))")
+                        }
                         
                         // If wanting more than 1 article per artist, use this to not duplicate: !currentArticles.contains(article) {
                         //currentArticles.append(article)
