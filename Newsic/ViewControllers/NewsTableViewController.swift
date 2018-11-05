@@ -66,14 +66,15 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let article = GlobalVariables.articleArray[(indexPath as NSIndexPath).row]
+        let articleURL = article["url"] as! String
+        UIApplication.shared.open(URL(string: articleURL)!, options: [:], completionHandler: { (status) in
+        })
+        
         // Grab the ArticleViewController from Storyboard
-        let articleController = self.storyboard!.instantiateViewController(withIdentifier: "ArticleViewController") as! ArticleViewController
-        
-        //Populate view controller with data from the selected item
-        
-        
+//        let articleController = self.storyboard!.instantiateViewController(withIdentifier: "ArticleViewController") as! ArticleViewController
         // Present the view controller using navigation
-        self.navigationController!.pushViewController(articleController, animated: true)
+        //self.navigationController!.pushViewController(articleController, animated: true)
         
         
         // MARK: - Navigation
