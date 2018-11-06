@@ -176,28 +176,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="articleCell" rowHeight="84" id="Sco-BR-WPg">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="articleCell" rowHeight="84" id="Sco-BR-WPg" customClass="NewsTableViewCell" customModule="Newsic" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="84"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sco-BR-WPg" id="peS-yB-dvg">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sco-BR-WPg" id="peS-yB-dvg">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3h-9T-ELr">
                                             <rect key="frame" x="332" y="19" width="43" height="44"/>
+                                            <color key="backgroundColor" red="0.33462011528767882" green="0.054905310685905075" blue="0.57386183375634525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="43" id="sIl-8r-nEH"/>
                                                 <constraint firstAttribute="height" constant="44" id="w9u-Vy-1wo"/>
                                             </constraints>
-                                            <state key="normal" title="Save"/>
+                                            <state key="normal" title="Save">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Vq-Hy-Nfc">
+                                            <rect key="frame" x="92" y="0.0" width="232" height="84"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dRI-5I-g1w">
+                                            <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="84" id="fOV-pJ-TZ0"/>
+                                                <constraint firstAttribute="width" constant="84" id="ozH-sq-tB8"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="dRI-5I-g1w" secondAttribute="bottom" id="2oy-M7-VVw"/>
+                                        <constraint firstItem="3Vq-Hy-Nfc" firstAttribute="bottom" secondItem="dRI-5I-g1w" secondAttribute="bottom" id="CEf-dV-nXE"/>
+                                        <constraint firstItem="3Vq-Hy-Nfc" firstAttribute="top" secondItem="dRI-5I-g1w" secondAttribute="top" id="M0i-3C-4uB"/>
                                         <constraint firstItem="Y3h-9T-ELr" firstAttribute="top" secondItem="peS-yB-dvg" secondAttribute="top" constant="19" id="Nsh-Ry-OUq"/>
+                                        <constraint firstItem="dRI-5I-g1w" firstAttribute="leading" secondItem="peS-yB-dvg" secondAttribute="leading" id="PRj-zE-qS8"/>
+                                        <constraint firstItem="dRI-5I-g1w" firstAttribute="top" secondItem="peS-yB-dvg" secondAttribute="top" id="cPf-kQ-2Rj"/>
                                         <constraint firstAttribute="trailing" secondItem="Y3h-9T-ELr" secondAttribute="trailing" id="kj9-BL-2Dz"/>
                                         <constraint firstAttribute="bottom" secondItem="Y3h-9T-ELr" secondAttribute="bottom" constant="20.5" id="xai-Pp-IDV"/>
+                                        <constraint firstItem="Y3h-9T-ELr" firstAttribute="leading" secondItem="3Vq-Hy-Nfc" secondAttribute="trailing" constant="8" symbolic="YES" id="z1z-xe-kaW"/>
+                                        <constraint firstItem="3Vq-Hy-Nfc" firstAttribute="leading" secondItem="dRI-5I-g1w" secondAttribute="trailing" constant="8" symbolic="YES" id="z3N-fN-fPd"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellImage" destination="dRI-5I-g1w" id="qUN-WG-9zA"/>
+                                    <outlet property="cellLabel" destination="3Vq-Hy-Nfc" id="rR7-Vp-n5W"/>
+                                    <outlet property="cellSaveButton" destination="Y3h-9T-ELr" id="it7-Ys-9A4"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

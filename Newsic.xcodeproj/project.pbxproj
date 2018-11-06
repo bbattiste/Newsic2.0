@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13194E0121915B8700CCC4A7 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13194E0021915B8700CCC4A7 /* NewsTableViewCell.swift */; };
 		13D48E1B218D38D000D77576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E1A218D38D000D77576 /* AppDelegate.swift */; };
 		13D48E20218D38D000D77576 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13D48E1E218D38D000D77576 /* Main.storyboard */; };
 		13D48E22218D38D300D77576 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13D48E21218D38D300D77576 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13194E0021915B8700CCC4A7 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		13D48E17218D38D000D77576 /* Newsic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Newsic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13D48E1A218D38D000D77576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13D48E1F218D38D000D77576 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13194DFF21915B0100CCC4A7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				13194E0021915B8700CCC4A7 /* NewsTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		13D48E0E218D38D000D77576 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +84,7 @@
 				13D48E3E218D462700D77576 /* GCD.swift */,
 				13D48E44218D46A000D77576 /* Model */,
 				13D48E3D218D45D700D77576 /* ClientNetworks */,
+				13194DFF21915B0100CCC4A7 /* Views */,
 				13D48E36218D44D600D77576 /* ViewControllers */,
 				13D48E1E218D38D000D77576 /* Main.storyboard */,
 				13D48E21218D38D300D77576 /* Assets.xcassets */,
@@ -184,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13D48E3A218D456F00D77576 /* NewsClient.swift in Sources */,
+				13194E0121915B8700CCC4A7 /* NewsTableViewCell.swift in Sources */,
 				13EC2223218E25E30068E260 /* SearchViewController.swift in Sources */,
 				13D48E1B218D38D000D77576 /* AppDelegate.swift in Sources */,
 				13D48E35218D44BC00D77576 /* ArticleViewController.swift in Sources */,

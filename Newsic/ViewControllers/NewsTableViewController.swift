@@ -20,10 +20,7 @@ class NewsTableViewController: UITableViewController {
         //MARK: NAV BAR buttons
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.backOut))
-        
-        // Display an Edit button in the navigation bar.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+                
         NewsClient.shared.requestBandArticles() { (success, error) in
             if success {
                 performUIUpdatesOnMain {
@@ -61,14 +58,27 @@ class NewsTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! NewsTableViewCell
+        
         let articleForCell = GlobalVariables.articleArray[(indexPath as NSIndexPath).row]
-        
         print("cellForRowAt called")
+        
+        
+        
+        
         // Configure the cell...
+        cell.cellLabel?.text = articleForCell["title"] as? String
+       
         
-        
-        cell.textLabel?.text = articleForCell["title"] as? String
+        if let url = URL(string: (articleForCell["urlToImage"] as? String)!) {
+            DispatchQueue.global().async {
+                if let urlData = try? Data(contentsOf: url) {
+                    performUIUpdatesOnMain {
+                        cell.cellImage?.image = UIImage(data: urlData)
+                    }
+                }
+            }
+        }
         
         
         return cell
