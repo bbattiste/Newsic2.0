@@ -12,7 +12,7 @@ class NewsTableViewController: UITableViewController {
     
     @IBOutlet var newsTableView: UITableView!
     
-    // MARK: Lifecycle
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +35,21 @@ class NewsTableViewController: UITableViewController {
                     //self.photoCollectionView.isScrollEnabled = true
                 }
             }
+        // Preserve selection between presentations
+        self.clearsSelectionOnViewWillAppear = false
         }
-        
-        // Display an Edit button in the navigation bar.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     // MARK: Functions
+    
+    func clearSection(gesture: UIGestureRecognizer) {
+        if gesture.state == .ended {
+            if let indexPath = newsTableView.indexPathForSelectedRow {
+                newsTableView.deselectRow(at: indexPath, animated: true)
+            }
+        }
+    }
+    
     
     @objc func backOut() {
         self.dismiss(animated: false, completion: nil)
