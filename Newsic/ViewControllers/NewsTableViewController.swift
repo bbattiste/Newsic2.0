@@ -12,12 +12,15 @@ class NewsTableViewController: UITableViewController {
     
     @IBOutlet var newsTableView: UITableView!
     
-    
-    var testArray = ["a", "b", "c", "d", "e"]
-    //[[String: AnyObject]]()
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //MARK: NAV BAR buttons
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.backOut))
+        
         
         NewsClient.shared.requestBandArticles() { (success, error) in
             if success {
@@ -36,6 +39,12 @@ class NewsTableViewController: UITableViewController {
         
         // Display an Edit button in the navigation bar.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    // MARK: Functions
+    
+    @objc func backOut() {
+        self.dismiss(animated: false, completion: nil)
     }
     
     // MARK: - Table view data source
