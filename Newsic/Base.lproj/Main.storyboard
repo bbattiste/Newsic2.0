@@ -182,6 +182,21 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sco-BR-WPg" id="peS-yB-dvg">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3h-9T-ELr">
+                                            <rect key="frame" x="332" y="19" width="43" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="43" id="sIl-8r-nEH"/>
+                                                <constraint firstAttribute="height" constant="44" id="w9u-Vy-1wo"/>
+                                            </constraints>
+                                            <state key="normal" title="Save"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Y3h-9T-ELr" firstAttribute="top" secondItem="peS-yB-dvg" secondAttribute="top" constant="19" id="Nsh-Ry-OUq"/>
+                                        <constraint firstAttribute="trailing" secondItem="Y3h-9T-ELr" secondAttribute="trailing" id="kj9-BL-2Dz"/>
+                                        <constraint firstAttribute="bottom" secondItem="Y3h-9T-ELr" secondAttribute="bottom" constant="20.5" id="xai-Pp-IDV"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
