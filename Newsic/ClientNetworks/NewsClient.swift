@@ -18,14 +18,16 @@ class NewsClient: NSObject {
     
     func requestBandArticles(completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void) {
         
-        let nam = NewsAPIManager() // Initialize News API Manager
-        let band = "metallica" // TODO = Make band URL-encoded
+        // Initialize News API Manager
+        let nam = NewsAPIManager()
         
         let monthsToSubtract = -1
+        let daysToAdd = 1
         let oneMonthAgoDate = Calendar.current.date(byAdding: .month, value: monthsToSubtract, to: Date())
-        Constants.NewsParameterValues.FromDate = usableDate(date: oneMonthAgoDate!)
+        let datePlusOneDay = Calendar.current.date(byAdding: .day, value: daysToAdd, to: oneMonthAgoDate!)
+        Constants.NewsParameterValues.FromDate = usableDate(date: datePlusOneDay!)
         
-        //TODO: to become userdefaults
+        //TODO: to become userdefaults? Maybe
         //var currentArticles = [UserDefaults.standard.object(forKey: "NewsAPI-Swift Articles")]
         var currentArticles = GlobalVariables.articleArray
         
@@ -34,7 +36,7 @@ class NewsClient: NSObject {
                 let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 
                 if let jsonArray = json as? [String: AnyObject] {
-                    
+                    print("jsonArray = \(jsonArray)")
                     
                     if let articles = jsonArray["articles"] as? [[String : AnyObject]] {
                         
