@@ -21,6 +21,8 @@ class NewsTableViewController: UITableViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.backOut))
         
+        // Display an Edit button in the navigation bar.
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         NewsClient.shared.requestBandArticles() { (success, error) in
             if success {
@@ -41,15 +43,6 @@ class NewsTableViewController: UITableViewController {
     }
     
     // MARK: Functions
-    
-    func clearSection(gesture: UIGestureRecognizer) {
-        if gesture.state == .ended {
-            if let indexPath = newsTableView.indexPathForSelectedRow {
-                newsTableView.deselectRow(at: indexPath, animated: true)
-            }
-        }
-    }
-    
     
     @objc func backOut() {
         self.dismiss(animated: false, completion: nil)
@@ -87,19 +80,13 @@ class NewsTableViewController: UITableViewController {
         let articleURL = article["url"] as! String
         UIApplication.shared.open(URL(string: articleURL)!, options: [:], completionHandler: { (status) in
         })
-        
-        // Grab the ArticleViewController from Storyboard
-//        let articleController = self.storyboard!.instantiateViewController(withIdentifier: "ArticleViewController") as! ArticleViewController
-        // Present the view controller using navigation
-        //self.navigationController!.pushViewController(articleController, animated: true)
-        
-        
-        // MARK: - Navigation
-        
-        // In a storyboard-based application, you will often want to do a little preparation before navigation
-        //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        
+    
+        
+    }
+
 }
