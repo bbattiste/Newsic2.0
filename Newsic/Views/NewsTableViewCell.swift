@@ -14,7 +14,8 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var cellSaveButton: UIButton!
     @IBOutlet weak var cellDateLabel: UILabel!
-    
+    // TODO: add source of article to cell
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -12,7 +12,7 @@ class NewsTableViewController: UITableViewController {
     
     @IBOutlet var newsTableView: UITableView!
     @IBOutlet weak var newsTableViewActivityIndicator: UIActivityIndicatorView!
-    
+    // TODO: add source of article to cell
     
     
     override func viewDidLoad() {
@@ -84,15 +84,18 @@ class NewsTableViewController: UITableViewController {
         let dateToUse = createReadableDate(dateToConvert: (articleForCell["publishedAt"] as? String)!)
         cell.cellDateLabel?.text = dateToUse
         // Image
-        if let url = URL(string: (articleForCell["urlToImage"] as? String)!) {
-            DispatchQueue.global().async {
-                if let urlData = try? Data(contentsOf: url) {
-                    performUIUpdatesOnMain {
-                        cell.cellImage?.image = UIImage(data: urlData)
+        if let imageURL = articleForCell["urlToImage"] as? String {
+            if let url = URL(string: imageURL) {
+                DispatchQueue.global().async {
+                    if let urlData = try? Data(contentsOf: url) {
+                        performUIUpdatesOnMain {
+                            cell.cellImage?.image = UIImage(data: urlData)
+                        }
                     }
                 }
             }
         }
+        
        
         newsTableViewActivityIndicator.stopAnimating()
         return cell
