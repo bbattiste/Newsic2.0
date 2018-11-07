@@ -68,8 +68,8 @@ class NewsTableViewController: UITableViewController {
         
         // Configure the cell...
         cell.cellLabel?.text = articleForCell["title"] as? String
-       
-        
+        cell.cellDateLabel?.text = articleForCell["publishedAt"] as? String
+        // Image
         if let url = URL(string: (articleForCell["urlToImage"] as? String)!) {
             DispatchQueue.global().async {
                 if let urlData = try? Data(contentsOf: url) {
