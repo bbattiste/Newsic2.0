@@ -80,12 +80,18 @@ class NewsTableViewController: UITableViewController {
         
         // Configure the cell...
         cell.cellLabel?.text = articleForCell["title"] as? String
+        
         // Date
         let dateToUse = createReadableDate(dateToConvert: (articleForCell["publishedAt"] as? String)!)
         cell.cellDateLabel?.text = dateToUse
+        
         // Image
-        if let imageURL = articleForCell["urlToImage"] as? String {
-            if let url = URL(string: imageURL) {
+        let urlCheck = articleForCell["urlToImage"]
+        if urlCheck is NSNull {
+            print("!!!! found mising")
+            // TODO: cell.cellImage?.image = UIImage(named: <#T##String#>)
+        } else {
+            if let url = URL(string: (articleForCell["urlToImage"] as? String)!) {
                 DispatchQueue.global().async {
                     if let urlData = try? Data(contentsOf: url) {
                         performUIUpdatesOnMain {
@@ -96,7 +102,6 @@ class NewsTableViewController: UITableViewController {
             }
         }
         
-       
         newsTableViewActivityIndicator.stopAnimating()
         return cell
     }
