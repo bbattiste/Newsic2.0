@@ -45,6 +45,17 @@ class NewsTableViewController: UITableViewController {
         self.dismiss(animated: false, completion: nil)
     }
     
+    func createReadableDate(dateToConvert: String) -> String {
+        let deFormatter = DateFormatter()
+        deFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let deconstructedDate = deFormatter.date(from: dateToConvert)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E, MMM d"
+        let newDate = formatter.string(from: deconstructedDate!)
+        return newDate
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,12 +74,11 @@ class NewsTableViewController: UITableViewController {
         let articleForCell = GlobalVariables.articleArray[(indexPath as NSIndexPath).row]
         print("cellForRowAt called")
         
-        
-        
-        
         // Configure the cell...
         cell.cellLabel?.text = articleForCell["title"] as? String
-        cell.cellDateLabel?.text = articleForCell["publishedAt"] as? String
+        // Date
+        let dateToUse = createReadableDate(dateToConvert: (articleForCell["publishedAt"] as? String)!)
+        cell.cellDateLabel?.text = dateToUse
         // Image
         if let url = URL(string: (articleForCell["urlToImage"] as? String)!) {
             DispatchQueue.global().async {
