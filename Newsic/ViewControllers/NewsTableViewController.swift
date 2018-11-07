@@ -76,9 +76,9 @@ class NewsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! NewsTableViewCell
         
         let articleForCell = GlobalVariables.articleArray[(indexPath as NSIndexPath).row]
-        print("cellForRowAt called")
         
         // Configure the cell...
+        // Title
         cell.cellLabel?.text = articleForCell["title"] as? String
         
         // Date
@@ -104,7 +104,12 @@ class NewsTableViewController: UITableViewController {
         }
         
         // Source
-        
+        guard let sourceDictionary = articleForCell["source"] as? [String: AnyObject] else {
+            newsTableViewActivityIndicator.stopAnimating()
+            return cell
+        }
+        let sourceToUse = sourceDictionary["name"] as? String
+        cell.cellSourceLabel?.text = sourceToUse
         
         newsTableViewActivityIndicator.stopAnimating()
         return cell
