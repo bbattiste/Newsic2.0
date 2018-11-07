@@ -87,9 +87,10 @@ class NewsTableViewController: UITableViewController {
         
         // Image
         let urlCheck = articleForCell["urlToImage"]
-        if urlCheck is NSNull {
-            print("!!!! found mising")
-            cell.cellImage?.image = UIImage(named: "missingImage")
+        if urlCheck is NSNull || urlCheck as? String == ("") {
+            performUIUpdatesOnMain {
+                cell.cellImage?.image = UIImage(named: "missingImage")
+            }
         } else {
             if let url = URL(string: (articleForCell["urlToImage"] as? String)!) {
                 DispatchQueue.global().async {
