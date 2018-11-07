@@ -30,7 +30,7 @@ struct Constants {
         static var SearchText = ""
         static let SortBy = "relevancy"
         static let Language = "en"
-        static let PageSize = "4"
+        static let PageSize = "20"
         static var FromDate = ""
         static let EndPoint = "everything"
     }

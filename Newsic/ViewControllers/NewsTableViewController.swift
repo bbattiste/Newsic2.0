@@ -11,14 +11,17 @@ import UIKit
 class NewsTableViewController: UITableViewController {
     
     @IBOutlet var newsTableView: UITableView!
+    @IBOutlet weak var newsTableViewActivityIndicator: UIActivityIndicatorView!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //MARK: NAV BAR buttons
+        newsTableViewActivityIndicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        newsTableViewActivityIndicator.startAnimating()
         
+        //MARK: NAV BAR buttons
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.backOut))
                 
         NewsClient.shared.requestBandArticles() { (success, error) in
@@ -59,6 +62,7 @@ class NewsTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 1
     }
     
@@ -89,17 +93,19 @@ class NewsTableViewController: UITableViewController {
                 }
             }
         }
-        
-        
+       
+        newsTableViewActivityIndicator.stopAnimating()
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        newsTableViewActivityIndicator.startAnimating()
         let article = GlobalVariables.articleArray[(indexPath as NSIndexPath).row]
         let articleURL = article["url"] as! String
         UIApplication.shared.open(URL(string: articleURL)!, options: [:], completionHandler: { (status) in
         })
+        newsTableViewActivityIndicator.stopAnimating()
     }
     
 }
