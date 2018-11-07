@@ -226,9 +226,20 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlA-aA-3nA">
-                                            <rect key="frame" x="86" y="47" width="222" height="26"/>
+                                            <rect key="frame" x="86" y="55" width="65" height="26"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="26" id="4bB-wg-WmX"/>
+                                                <constraint firstAttribute="width" constant="65" id="xLV-aO-F9B"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Source" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="piY-Qy-ibz">
+                                            <rect key="frame" x="167" y="55" width="141" height="26"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="141" id="Elu-kM-zxc"/>
+                                                <constraint firstAttribute="height" constant="26" id="u1j-mf-XPD"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="textColor"/>
@@ -236,17 +247,20 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Y3h-9T-ELr" firstAttribute="leading" secondItem="tlA-aA-3nA" secondAttribute="trailing" constant="8" id="0QX-Gs-KG0"/>
-                                        <constraint firstItem="tlA-aA-3nA" firstAttribute="leading" secondItem="dRI-5I-g1w" secondAttribute="trailing" constant="8" id="4pl-he-ilV"/>
+                                        <constraint firstAttribute="bottom" secondItem="tlA-aA-3nA" secondAttribute="bottom" constant="3" id="0ZD-wY-P5n"/>
+                                        <constraint firstItem="tlA-aA-3nA" firstAttribute="top" secondItem="3Vq-Hy-Nfc" secondAttribute="bottom" constant="8" id="1jh-bF-R26"/>
+                                        <constraint firstItem="piY-Qy-ibz" firstAttribute="top" secondItem="3Vq-Hy-Nfc" secondAttribute="bottom" constant="8" id="7qO-nh-mhU"/>
                                         <constraint firstItem="dRI-5I-g1w" firstAttribute="top" secondItem="peS-yB-dvg" secondAttribute="top" constant="3" id="Ccd-VA-pNb"/>
                                         <constraint firstItem="dRI-5I-g1w" firstAttribute="leading" secondItem="peS-yB-dvg" secondAttribute="leading" id="EjX-jP-HQE"/>
                                         <constraint firstItem="3Vq-Hy-Nfc" firstAttribute="top" secondItem="peS-yB-dvg" secondAttribute="top" constant="3" id="HOK-xP-tCp"/>
+                                        <constraint firstAttribute="bottom" secondItem="piY-Qy-ibz" secondAttribute="bottom" constant="3" id="QZc-7k-Zj8"/>
+                                        <constraint firstItem="Y3h-9T-ELr" firstAttribute="leading" secondItem="piY-Qy-ibz" secondAttribute="trailing" constant="8" id="QqC-Tq-9Fd"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Y3h-9T-ELr" secondAttribute="bottom" constant="9" id="WfV-3n-hK4"/>
                                         <constraint firstItem="Y3h-9T-ELr" firstAttribute="trailing" secondItem="peS-yB-dvg" secondAttribute="trailingMargin" id="Yzd-DZ-D2f"/>
                                         <constraint firstItem="Y3h-9T-ELr" firstAttribute="leading" secondItem="3Vq-Hy-Nfc" secondAttribute="trailing" constant="8" id="cAN-4n-Xs7"/>
+                                        <constraint firstItem="tlA-aA-3nA" firstAttribute="leading" secondItem="dRI-5I-g1w" secondAttribute="trailing" constant="8" id="rur-4R-ErY"/>
                                         <constraint firstAttribute="bottom" secondItem="dRI-5I-g1w" secondAttribute="bottom" constant="3" id="uWL-4d-t2b"/>
                                         <constraint firstItem="Y3h-9T-ELr" firstAttribute="top" secondItem="peS-yB-dvg" secondAttribute="topMargin" constant="9" id="vkX-46-EvS"/>
-                                        <constraint firstItem="tlA-aA-3nA" firstAttribute="top" secondItem="3Vq-Hy-Nfc" secondAttribute="bottom" id="wqh-2u-laF"/>
                                         <constraint firstItem="3Vq-Hy-Nfc" firstAttribute="leading" secondItem="dRI-5I-g1w" secondAttribute="trailing" constant="8" id="yTU-Fi-3Vp"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -255,6 +269,7 @@
                                     <outlet property="cellImage" destination="dRI-5I-g1w" id="qUN-WG-9zA"/>
                                     <outlet property="cellLabel" destination="3Vq-Hy-Nfc" id="rR7-Vp-n5W"/>
                                     <outlet property="cellSaveButton" destination="Y3h-9T-ELr" id="it7-Ys-9A4"/>
+                                    <outlet property="cellSourceLabel" destination="piY-Qy-ibz" id="165-mc-QQr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -14,6 +14,7 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var cellSaveButton: UIButton!
     @IBOutlet weak var cellDateLabel: UILabel!
+    @IBOutlet weak var cellSourceLabel: UILabel!
     // TODO: add source of article to cell
 
     
