@@ -17,9 +17,7 @@ class SavedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
-        
+        self.tabBarController?.tabBar.isHidden = false        
         // Display an Edit button in the navigation bar.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }

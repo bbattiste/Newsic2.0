@@ -13,7 +13,7 @@
         <!--Newsic-->
         <scene sceneID="FuY-dR-3t9">
             <objects>
-                <viewController id="qZR-7k-QWm" customClass="SearchViewController" customModule="Newsic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" id="qZR-7k-QWm" customClass="SearchViewController" customModule="Newsic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oIy-p8-Qu4" userLabel="Search View">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -292,7 +292,7 @@
         <!--SavedTableViewController-->
         <scene sceneID="ArS-yZ-BUk">
             <objects>
-                <tableViewController title="SavedTableViewController" id="kE3-Z8-LzQ" customClass="SavedTableViewController" customModule="Newsic" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SavedTableViewController" title="SavedTableViewController" id="kE3-Z8-LzQ" customClass="SavedTableViewController" customModule="Newsic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="J92-vU-Kuz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

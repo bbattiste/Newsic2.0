@@ -14,7 +14,6 @@ class NewsTableViewController: UITableViewController {
     
     @IBOutlet var newsTableView: UITableView!
     @IBOutlet weak var newsTableViewActivityIndicator: UIActivityIndicatorView!
-    // TODO: add source of article to cell
     
     var dataController: DataController!
     
@@ -26,8 +25,10 @@ class NewsTableViewController: UITableViewController {
         newsTableViewActivityIndicator.startAnimating()
         
         //MARK: NAV BAR buttons
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.backOut))
-                
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Search", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.goToSearch))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Saved Articles", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.goToSavedArticles))
+        
+        
         NewsClient.shared.requestBandArticles() { (success, error) in
             if success {
                 performUIUpdatesOnMain {
@@ -48,8 +49,14 @@ class NewsTableViewController: UITableViewController {
     
     // MARK: Functions
     
-    @objc func backOut() {
-        self.dismiss(animated: false, completion: nil)
+    @objc func goToSearch() {
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @objc func goToSavedArticles() {
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SavedTableViewController") as! SavedTableViewController
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func createReadableDate(dateToConvert: String) -> String {

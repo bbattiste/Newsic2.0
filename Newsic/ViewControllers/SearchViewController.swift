@@ -37,6 +37,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBarController?.tabBar.isHidden = false
         // Enable loginView tapable to return from firstResponder
         searchView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture))
