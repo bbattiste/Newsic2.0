@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13194E0121915B8700CCC4A7 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13194E0021915B8700CCC4A7 /* NewsTableViewCell.swift */; };
+		13194E042193B33E00CCC4A7 /* Newsic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 13194E022193B33D00CCC4A7 /* Newsic.xcdatamodeld */; };
 		13D48E1B218D38D000D77576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E1A218D38D000D77576 /* AppDelegate.swift */; };
 		13D48E20218D38D000D77576 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13D48E1E218D38D000D77576 /* Main.storyboard */; };
 		13D48E22218D38D300D77576 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13D48E21218D38D300D77576 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		13194E0021915B8700CCC4A7 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		13194E032193B33D00CCC4A7 /* Newsic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Newsic.xcdatamodel; sourceTree = "<group>"; };
 		13D48E17218D38D000D77576 /* Newsic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Newsic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13D48E1A218D38D000D77576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13D48E1F218D38D000D77576 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		13D48E44218D46A000D77576 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				13194E022193B33D00CCC4A7 /* Newsic.xcdatamodeld */,
 				13D48E40218D465F00D77576 /* Constants.swift */,
 				13D48E42218D468D00D77576 /* GlobalVariables.swift */,
 			);
@@ -198,6 +201,7 @@
 				13194E0121915B8700CCC4A7 /* NewsTableViewCell.swift in Sources */,
 				13EC2223218E25E30068E260 /* SearchViewController.swift in Sources */,
 				13D48E1B218D38D000D77576 /* AppDelegate.swift in Sources */,
+				13194E042193B33E00CCC4A7 /* Newsic.xcdatamodeld in Sources */,
 				13D48E35218D44BC00D77576 /* ArticleViewController.swift in Sources */,
 				13D48E41218D465F00D77576 /* Constants.swift in Sources */,
 				13D48E43218D468D00D77576 /* GlobalVariables.swift in Sources */,
@@ -404,6 +408,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		13194E022193B33D00CCC4A7 /* Newsic.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				13194E032193B33D00CCC4A7 /* Newsic.xcdatamodel */,
+			);
+			currentVersion = 13194E032193B33D00CCC4A7 /* Newsic.xcdatamodel */;
+			path = Newsic.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 13D48E0F218D38D000D77576 /* Project object */;
 }
