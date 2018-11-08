@@ -16,7 +16,6 @@
 		13D48E25218D38D300D77576 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13D48E23218D38D300D77576 /* LaunchScreen.storyboard */; };
 		13D48E31218D443E00D77576 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E30218D443E00D77576 /* NewsTableViewController.swift */; };
 		13D48E33218D446C00D77576 /* SavedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E32218D446C00D77576 /* SavedTableViewController.swift */; };
-		13D48E35218D44BC00D77576 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E34218D44BC00D77576 /* ArticleViewController.swift */; };
 		13D48E38218D452A00D77576 /* NewsAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E37218D452A00D77576 /* NewsAPIManager.swift */; };
 		13D48E3A218D456F00D77576 /* NewsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E39218D456F00D77576 /* NewsClient.swift */; };
 		13D48E3F218D462700D77576 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D48E3E218D462700D77576 /* GCD.swift */; };
@@ -37,7 +36,6 @@
 		13D48E26218D38D300D77576 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13D48E30218D443E00D77576 /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		13D48E32218D446C00D77576 /* SavedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTableViewController.swift; sourceTree = "<group>"; };
-		13D48E34218D44BC00D77576 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		13D48E37218D452A00D77576 /* NewsAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPIManager.swift; sourceTree = "<group>"; };
 		13D48E39218D456F00D77576 /* NewsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsClient.swift; sourceTree = "<group>"; };
 		13D48E3E218D462700D77576 /* GCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCD.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				13EC2222218E25E30068E260 /* SearchViewController.swift */,
 				13D48E30218D443E00D77576 /* NewsTableViewController.swift */,
 				13D48E32218D446C00D77576 /* SavedTableViewController.swift */,
-				13D48E34218D44BC00D77576 /* ArticleViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -205,7 +202,6 @@
 				13EC2223218E25E30068E260 /* SearchViewController.swift in Sources */,
 				13D48E1B218D38D000D77576 /* AppDelegate.swift in Sources */,
 				13194E042193B33E00CCC4A7 /* Newsic.xcdatamodeld in Sources */,
-				13D48E35218D44BC00D77576 /* ArticleViewController.swift in Sources */,
 				13D48E41218D465F00D77576 /* Constants.swift in Sources */,
 				13D48E43218D468D00D77576 /* GlobalVariables.swift in Sources */,
 				13D48E38218D452A00D77576 /* NewsAPIManager.swift in Sources */,
