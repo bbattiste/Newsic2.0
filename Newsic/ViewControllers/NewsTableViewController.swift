@@ -88,6 +88,17 @@ class NewsTableViewController: UITableViewController {
         let articleForCell = GlobalVariables.articleArray[(indexPath as NSIndexPath).row]
         
         // Configure the cell...
+        // Save Button
+        cell.buttonObject =
+            {
+                //Do whatever you want to do when the button is tapped here
+                print("buttonTapped")
+                //self.newCollectionButton.isEnabled = false
+                // Save article entity of 5 attributes including url
+                
+                //self.view.addSubview(self.someotherView)
+        }
+        
         // Title
         cell.cellLabel?.text = articleForCell["title"] as? String
         
