@@ -50,8 +50,7 @@ class NewsTableViewController: UITableViewController {
     // MARK: Functions
     
     @objc func goToSearch() {
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        self.navigationController?.pushViewController(controller, animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func goToSavedArticles() {
