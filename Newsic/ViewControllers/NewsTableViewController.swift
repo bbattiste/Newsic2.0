@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Foundation
+import CoreData
 
 class NewsTableViewController: UITableViewController {
     
@@ -14,6 +16,7 @@ class NewsTableViewController: UITableViewController {
     @IBOutlet weak var newsTableViewActivityIndicator: UIActivityIndicatorView!
     // TODO: add source of article to cell
     
+    var dataController: DataController!
     
     override func viewDidLoad() {
         super.viewDidLoad()

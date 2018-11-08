@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class SavedTableViewController: UITableViewController {
     
     var testArray = ["a", "b", "c", "d", "e"]
+    var dataController: DataController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

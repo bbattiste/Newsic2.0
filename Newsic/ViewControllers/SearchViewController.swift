@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class SearchViewController: UIViewController {
     
@@ -20,7 +21,7 @@ class SearchViewController: UIViewController {
     @IBOutlet var searchView: UIView!
     
     // MARK: Lets/Vars
-    
+    var dataController: DataController!
     
     // MARK: Lifecyle
     
