@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search View Controller-->
+        <!--Newsic-->
         <scene sceneID="FuY-dR-3t9">
             <objects>
                 <viewController id="qZR-7k-QWm" customClass="SearchViewController" customModule="Newsic" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ugX-BA-tg4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="missingImage" translatesAutoresizingMaskIntoConstraints="NO" id="ugX-BA-tg4">
                                 <rect key="frame" x="67" y="103" width="240" height="165"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="FUL-NB-2Af"/>
@@ -103,7 +103,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WUe-nm-0fK"/>
                     </view>
-                    <navigationItem key="navigationItem" id="d5d-8i-u49"/>
+                    <navigationItem key="navigationItem" title="Newsic" id="d5d-8i-u49"/>
                     <connections>
                         <outlet property="activityIndicatorLogin" destination="mwt-Lf-JWP" id="E5j-AE-Gxa"/>
                         <outlet property="debugTextLabel" destination="2QE-tg-dpc" id="qAT-kn-VsR"/>
@@ -312,7 +312,7 @@
                             <outlet property="delegate" destination="kE3-Z8-LzQ" id="aT1-DY-FWY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Newsic" id="DhT-0v-ZYm"/>
+                    <navigationItem key="navigationItem" title="Saved News" id="DhT-0v-ZYm"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4h-mU-6f7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -320,6 +320,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="missingImage" width="213" height="120"/>
         <image name="newsAPI" width="25" height="10"/>
     </resources>
 </document>
