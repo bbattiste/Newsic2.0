@@ -76,8 +76,8 @@ class SearchViewController: UIViewController {
             self.debugTextLabel.text = ""
             self.setUIEnabled(true)
             
-            let controller = self.storyboard!.instantiateViewController(withIdentifier: "NewsicTabBarController") as! UITabBarController
-            self.present(controller, animated: true, completion: nil)
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: "NewsTableViewController") as! NewsTableViewController
+            self.navigationController?.pushViewController(controller, animated: true)
             
             self.searchButton.isEnabled = true
             self.activityIndicatorLogin.stopAnimating()
