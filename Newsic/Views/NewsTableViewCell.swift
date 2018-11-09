@@ -17,7 +17,6 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var cellSourceLabel: UILabel!
     
     var buttonObject : (() -> Void)? = nil
-    
 
     @IBAction func saveButtonPressed(_ sender: Any) {
         if let btnAction = self.buttonObject
@@ -25,6 +24,7 @@ class NewsTableViewCell: UITableViewCell {
             btnAction()
         }
     }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
