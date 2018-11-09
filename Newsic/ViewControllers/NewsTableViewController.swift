@@ -123,7 +123,7 @@ class NewsTableViewController: UITableViewController {
                 //Do whatever you want to do when the button is tapped here
                 print("buttonTapped")
                 cell.cellSaveButton.backgroundColor = UIColor.gray
-                cell.cellSaveButton.isEnabled = false
+                cell.cellSaveButton.setTitle("Saved", for: UIControl.State.normal)
                 //cell.cellSaveButton.titleLabel = "Saved"
                 // Save article entity of 5 attributes including url
                 //let articleToSave = Article(context: self.dataController.viewContext)
