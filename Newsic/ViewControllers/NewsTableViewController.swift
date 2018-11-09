@@ -124,6 +124,7 @@ class NewsTableViewController: UITableViewController {
                 print("buttonTapped")
                 cell.cellSaveButton.backgroundColor = UIColor.gray
                 cell.cellSaveButton.isEnabled = false
+                //cell.cellSaveButton.titleLabel = "Saved"
                 // Save article entity of 5 attributes including url
                 //let articleToSave = Article(context: self.dataController.viewContext)
 //                articleToSave.title = cell.cellLabel?.text
