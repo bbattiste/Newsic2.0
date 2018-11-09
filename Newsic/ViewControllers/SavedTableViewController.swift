@@ -19,6 +19,10 @@ class SavedTableViewController: UITableViewController {
         
         // Display an Edit button in the navigation bar.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
         self.dataController.load()
         let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
