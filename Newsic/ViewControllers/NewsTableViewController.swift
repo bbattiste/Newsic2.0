@@ -15,7 +15,7 @@ class NewsTableViewController: UITableViewController {
     @IBOutlet var newsTableView: UITableView!
     @IBOutlet weak var newsTableViewActivityIndicator: UIActivityIndicatorView!
     
-    var dataController: DataController!
+    let dataController = DataController(modelName: "Newsic")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,6 @@ class NewsTableViewController: UITableViewController {
         //MARK: NAV BAR buttons
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Search", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.goToSearch))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Saved Articles", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.goToSavedArticles))
-        
         
         NewsClient.shared.requestBandArticles() { (success, error) in
             if success {
@@ -42,6 +41,8 @@ class NewsTableViewController: UITableViewController {
                     //self.photoCollectionView.isScrollEnabled = true
                 }
             }
+            
+        self.dataController.load()
         }
     }
     
@@ -125,6 +126,18 @@ class NewsTableViewController: UITableViewController {
                 if cell.cellSaveButton.titleLabel!.text! == "Save" {
                     cell.cellSaveButton.backgroundColor = UIColor.gray
                     cell.cellSaveButton.setTitle("Saved", for: UIControl.State.normal)
+                    
+                    let articleToSave = Article(context: self.dataController.viewContext)
+                    articleToSave.title = cell.cellLabel?.text
+                    articleToSave.date = cell.cellDateLabel?.text
+                    articleToSave.imageURL = articleForCell["urlToImage"] as? String
+                    articleToSave.source = cell.cellSourceLabel?.text
+                    articleToSave.urlString = articleForCell["url"] as? String
+                    
+                        
+                    try? self.dataController.viewContext.save()
+                    
+                    print("data saved")
                 } else {
                     cell.cellSaveButton.backgroundColor = #colorLiteral(red: 0.3346201153, green: 0.05490531069, blue: 0.5738618338, alpha: 1)
                     cell.cellSaveButton.setTitle("Save", for: UIControl.State.normal)

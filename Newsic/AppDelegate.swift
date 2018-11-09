@@ -12,11 +12,22 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    let dataController = DataController(modelName: "Newsic")
+    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        dataController.load()
+        
+        
+//        if let tab = window?.rootViewController as? UITabBarController {
+//            for child in tab.viewControllers ?? [] {
+//                //for nav in child.childViewControllers {
+//                for nav in child.children {
+//                    if let top = nav as? PersistenceStackClient {
+//                        SearchViewController.dataController = dataController
+//                    }
+//                }
+//            }
+//        }
         
         return true
     }

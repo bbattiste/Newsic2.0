@@ -12,13 +12,19 @@ import CoreData
 class SavedTableViewController: UITableViewController {
     
     var testArray = ["a", "b", "c", "d", "e"]
-    var dataController: DataController!
+    let dataController = DataController(modelName: "Newsic")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         // Display an Edit button in the navigation bar.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        self.dataController.load()
+        let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
+        if let result = try? dataController.viewContext.fetch(fetchRequest) {
+            print(result)
+        }
     }
     
     // MARK: - Table view data source
