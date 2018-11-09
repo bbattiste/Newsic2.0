@@ -42,8 +42,6 @@ class NewsTableViewController: UITableViewController {
                     //self.photoCollectionView.isScrollEnabled = true
                 }
             }
-        // Preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
         }
     }
     
@@ -88,17 +86,6 @@ class NewsTableViewController: UITableViewController {
         let articleForCell = GlobalVariables.articleArray[(indexPath as NSIndexPath).row]
         
         // Configure the cell...
-        // Save Button
-        cell.buttonObject =
-            {
-                //Do whatever you want to do when the button is tapped here
-                print("buttonTapped")
-                //self.newCollectionButton.isEnabled = false
-                // Save article entity of 5 attributes including url
-                
-                //self.view.addSubview(self.someotherView)
-        }
-        
         // Title
         cell.cellLabel?.text = articleForCell["title"] as? String
         
@@ -125,12 +112,25 @@ class NewsTableViewController: UITableViewController {
         }
         
         // Source
-        guard let sourceDictionary = articleForCell["source"] as? [String: AnyObject] else {
-            newsTableViewActivityIndicator.stopAnimating()
-            return cell
+        if let sourceDictionary = articleForCell["source"] as? [String: AnyObject] {
+            let sourceToUse = sourceDictionary["name"] as? String
+            cell.cellSourceLabel?.text = sourceToUse
         }
-        let sourceToUse = sourceDictionary["name"] as? String
-        cell.cellSourceLabel?.text = sourceToUse
+        
+        // Save Button
+        cell.buttonObject =
+            {
+                //Do whatever you want to do when the button is tapped here
+                print("buttonTapped")
+                cell.cellSaveButton.backgroundColor = UIColor.gray
+                cell.cellSaveButton.isEnabled = false
+                // Save article entity of 5 attributes including url
+                //let articleToSave = Article(context: self.dataController.viewContext)
+//                articleToSave.title = cell.cellLabel?.text
+//                print("title from tap = \(String(describing: articleToSave.title))")
+                
+                //self.view.addSubview(self.someotherView)
+        }
         
         newsTableViewActivityIndicator.stopAnimating()
         return cell
@@ -144,6 +144,7 @@ class NewsTableViewController: UITableViewController {
         UIApplication.shared.open(URL(string: articleURL)!, options: [:], completionHandler: { (status) in
         })
         newsTableViewActivityIndicator.stopAnimating()
+        newsTableView.deselectRow(at: newsTableView.indexPathForSelectedRow!, animated: false)
     }
     
 }
