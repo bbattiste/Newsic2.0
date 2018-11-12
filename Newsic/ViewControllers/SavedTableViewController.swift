@@ -48,8 +48,8 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     
     func fetchSavedArticles() {
         let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
-        let predicate = NSPredicate(format: "source == %@", "Slate.com")
-        fetchRequest.predicate = predicate
+//        let predicate = NSPredicate(format: "source == %@", "Slate.com")
+//        fetchRequest.predicate = predicate
         
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "saveDate", ascending: true)]
         
