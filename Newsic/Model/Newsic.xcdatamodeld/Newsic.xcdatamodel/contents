@@ -3,11 +3,12 @@
     <entity name="Article" representedClassName="Article" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="saveDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="urlString" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Article" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Article" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

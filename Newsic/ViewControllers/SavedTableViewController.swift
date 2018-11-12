@@ -9,38 +9,69 @@
 import UIKit
 import CoreData
 
-class SavedTableViewController: UITableViewController {
+class SavedTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     var testArray = ["a", "b", "c", "d", "e"]
+    var savedArticles = [Article]()
     let dataController = DataController(modelName: "Newsic")
+    var fetchedResultsController:NSFetchedResultsController<Article>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Display an Edit button in the navigation bar.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        fetchSavedArticles()
+        if let photosTOPrint = fetchedResultsController.fetchedObjects {
+            print(photosTOPrint)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.dataController.load()
+//        self.dataController.load()
+//        let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
+//        if let result = try? dataController.viewContext.fetch(fetchRequest) {
+//            print(result)
+//        savedArticles = result
+//        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        fetchedResultsController = nil
+    }
+    
+    // MARK: Functions
+    
+    func fetchSavedArticles() {
         let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
-        if let result = try? dataController.viewContext.fetch(fetchRequest) {
-            print(result)
+        let predicate = NSPredicate(format: "source == %@", "Slate.com")
+        fetchRequest.predicate = predicate
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "saveDate", ascending: true)]
+        
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        self.fetchedResultsController.delegate = self
+        do {
+            try self.fetchedResultsController.performFetch()
+            print("fetchPerformed")
+        } catch {
+            fatalError("The fetch could not be performed: \(error.localizedDescription)")
         }
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return fetchedResultsController.sections?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return testArray.count
+        print(fetchedResultsController.sections?[section].numberOfObjects as! Int)
+        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     
@@ -79,3 +110,19 @@ class SavedTableViewController: UITableViewController {
      */
     
 }
+
+//extension SavedTableViewController: NSFetchedResultsControllerDelegate {
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+//
+//    }
+//
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+//
+//    }
+//
+//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//    }
+//
+//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//    }
+//}

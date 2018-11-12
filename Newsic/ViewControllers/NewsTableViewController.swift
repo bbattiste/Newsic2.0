@@ -121,7 +121,7 @@ class NewsTableViewController: UITableViewController {
         // Save Button
         cell.buttonObject =
             {
-                //Do whatever you want to do when the button is tapped here
+                //TODO: IF article is saved, row already be in saved state
                 print("buttonTapped")
                 if cell.cellSaveButton.titleLabel!.text! == "Save" {
                     cell.cellSaveButton.backgroundColor = UIColor.gray
@@ -133,7 +133,7 @@ class NewsTableViewController: UITableViewController {
                     articleToSave.imageURL = articleForCell["urlToImage"] as? String
                     articleToSave.source = cell.cellSourceLabel?.text
                     articleToSave.urlString = articleForCell["url"] as? String
-                    
+                    articleToSave.saveDate = Date()
                         
                     try? self.dataController.viewContext.save()
                     
