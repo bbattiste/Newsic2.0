@@ -128,13 +128,17 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        savedTableViewActivityIndicator.startAnimating()
-        let article = GlobalVariables.articleArray[(indexPath as NSIndexPath).row]
-        let articleURL = article["url"] as! String
-        UIApplication.shared.open(URL(string: articleURL)!, options: [:], completionHandler: { (status) in
-        })
-        newsTableViewActivityIndicator.stopAnimating()
-        newsTableView.deselectRow(at: newsTableView.indexPathForSelectedRow!, animated: false)
+        if isEditing {
+            return
+        } else {
+            savedTableViewActivityIndicator.startAnimating()
+            let article = savedArticles[(indexPath as NSIndexPath).row]
+            let articleURL = article.urlString
+            UIApplication.shared.open(URL(string: articleURL!)!, options: [:], completionHandler: { (status) in
+            })
+            savedTableViewActivityIndicator.stopAnimating()
+            savedTableView.deselectRow(at: savedTableView.indexPathForSelectedRow!, animated: false)
+        }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
