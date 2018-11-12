@@ -13,4 +13,3 @@ struct GlobalVariables {
     static var articleArray = [[String: AnyObject]]()
     
 }
-

@@ -12,6 +12,8 @@ import CoreData
 
 class NewsTableViewController: UITableViewController {
     
+    // MARK: Outlets
+    
     @IBOutlet var newsTableView: UITableView!
     @IBOutlet weak var newsTableViewActivityIndicator: UIActivityIndicatorView!
     

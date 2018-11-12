@@ -11,6 +11,12 @@ import CoreData
 
 class SavedTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    // MARK: Outlets
+    @IBOutlet var savedTableView: UITableView!
+    @IBOutlet weak var savedTableViewActivityIndicator: UIActivityIndicatorView!
+    
+    
+    
     var testArray = ["a", "b", "c", "d", "e"]
     var savedArticles = [Article]()
     let dataController = DataController(modelName: "Newsic")
@@ -21,22 +27,21 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
         
         // Display an Edit button in the navigation bar.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        fetchSavedArticles()
-        if let photosTOPrint = fetchedResultsController.fetchedObjects {
-            print(photosTOPrint)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-//        self.dataController.load()
-//        let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
-//        if let result = try? dataController.viewContext.fetch(fetchRequest) {
-//            print(result)
-//        savedArticles = result
+//        fetchSavedArticles()
+//        if let articlesTOPrint = fetchedResultsController.fetchedObjects {
+//            print("articlesTOPrint = \(articlesTOPrint)")
 //        }
+        self.dataController.load()
+        let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
+        if let result = try? dataController.viewContext.fetch(fetchRequest) {
+            print(result)
+        savedArticles = result
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -63,52 +68,83 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
         }
     }
     
+    func deleteArticle() {
+        
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController.sections?.count ?? 1
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(fetchedResultsController.sections?[section].numberOfObjects as! Int)
-        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
+        return savedArticles.count
+        
+//        print(fetchedResultsController.sections?[section].numberOfObjects as! Int)
+//        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath)
-        let articleForCell = testArray[(indexPath as NSIndexPath).row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! SavedTableViewCell
+        let articleForCell = savedArticles[(indexPath as NSIndexPath).row]
         
         print("cellForRowAt called")
         // Configure the cell...
-        cell.textLabel?.text = articleForCell
         
+        // Title
+        cell.cellLabel?.text = articleForCell.title
+        
+        // Date
+        cell.cellDateLabel?.text = articleForCell.date
+        
+        // Image
+        if let url = URL(string: (articleForCell.imageURL)!) {
+            DispatchQueue.global().async {
+                if let urlData = try? Data(contentsOf: url) {
+                    performUIUpdatesOnMain {
+                        cell.cellImage?.image = UIImage(data: urlData)
+                    }
+                }
+            }
+        }
+        
+        // Source
+        cell.cellSourceLabel?.text = articleForCell.source
+        
+        // Save Button
+        cell.buttonObject =
+            {
+            print("button tapped")
+                
+//            let articleToDelete = .object(at: indexPath)
+//            dataController.viewContext.delete(photoToDelete)
+//            try? dataController.viewContext.save()
+        }
         
         return cell
     }
     
-    // Override to support editing the table view.
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            // Delete the row from the data source
-//            meals.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        } else if editingStyle == .insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        }
-//    }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+        savedTableViewActivityIndicator.startAnimating()
+        let article = GlobalVariables.articleArray[(indexPath as NSIndexPath).row]
+        let articleURL = article["url"] as! String
+        UIApplication.shared.open(URL(string: articleURL)!, options: [:], completionHandler: { (status) in
+        })
+        newsTableViewActivityIndicator.stopAnimating()
+        newsTableView.deselectRow(at: newsTableView.indexPathForSelectedRow!, animated: false)
+    }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("Deleted")
+            
+//            self.catNames.remove(at: indexPath.row)
+//            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 }
 
 //extension SavedTableViewController: NSFetchedResultsControllerDelegate {
