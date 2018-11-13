@@ -11,6 +11,7 @@ import Foundation
 class NewsAPIManager {
     
     //attribution: Wyatt Mufson: https://github.com/WyattMufson/NewsAPI-Swift
+    //newsAPI in readme github
     
     // TODO: If no article pops up, turn label that says "Not all of your top listened to artists have current news!" - List top artists without news.
     func getArticles(completionHandler: @escaping (Data) -> ()) {
