@@ -117,13 +117,6 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITextFieldDelegate {
     
-    // textfields will return with enter key
-    // TODO:
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
     // textfields will return with touch on view
     private func resignIfFirstResponder(_ textField: UITextField) {
         if textField.isFirstResponder {

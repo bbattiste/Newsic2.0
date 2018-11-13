@@ -108,6 +108,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.33462011530000002" green="0.05490531069" blue="0.5738618338" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.33462011530000002" green="0.05490531069" blue="0.5738618338" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="Fkt-vi-S2Y" kind="relationship" relationship="viewControllers" id="uzJ-bc-eAk"/>
@@ -122,11 +125,18 @@
         <scene sceneID="nXZ-3B-whl">
             <objects>
                 <navigationController title="SearchNavigationController" id="Fkt-vi-S2Y" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" id="I2o-fV-EPS"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="I2o-fV-EPS">
+                        <color key="badgeColor" red="0.33462011530000002" green="0.05490531069" blue="0.5738618338" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wvM-8z-CHJ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                            <color key="textColor" red="0.33462011530000002" green="0.05490531069" blue="0.5738618338" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="qZR-7k-QWm" kind="relationship" relationship="rootViewController" id="Ahz-JP-qWj"/>
@@ -140,11 +150,19 @@
         <scene sceneID="1Ge-U5-HLH">
             <objects>
                 <navigationController title="SavedNavigationController" id="1Ow-2e-c8F" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Saved" id="0mK-NT-qpD"/>
+                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="0mK-NT-qpD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GaJ-b3-8Ap">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="textColor" red="0.33462011530000002" green="0.05490531069" blue="0.5738618338" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="orz-66-bbN" kind="relationship" relationship="rootViewController" id="r8o-jd-WKo"/>
@@ -272,7 +290,7 @@
                             <outlet property="delegate" destination="ji4-Ju-iDU" id="que-sQ-WsC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Newsic" id="hYR-Et-0f8"/>
+                    <navigationItem key="navigationItem" id="hYR-Et-0f8"/>
                     <connections>
                         <outlet property="newsTableView" destination="fGG-wg-Oqk" id="Onn-sj-h1H"/>
                         <outlet property="newsTableViewActivityIndicator" destination="j2T-Wc-DsV" id="KJH-ik-hMf"/>
@@ -393,7 +411,7 @@
                             <outlet property="delegate" destination="orz-66-bbN" id="vRS-ex-igi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Newsic" id="qaj-Su-1OQ" userLabel="Saved News"/>
+                    <navigationItem key="navigationItem" title="Saved Articles" largeTitleDisplayMode="never" id="qaj-Su-1OQ" userLabel="Saved News"/>
                     <connections>
                         <outlet property="savedTableView" destination="zKY-cf-s7J" id="a7V-Zi-rQd"/>
                         <outlet property="savedTableViewActivityIndicator" destination="xuO-ci-JRx" id="pO8-g7-yS3"/>
