@@ -30,22 +30,11 @@ class NewsTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Search", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.goToSearch))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Saved Articles", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.goToSavedArticles))
         
-        NewsClient.shared.requestBandArticles() { (success, error) in
-            if success {
-                performUIUpdatesOnMain {
-                    self.newsTableView.reloadData()
-                }
-            } else {
-                performUIUpdatesOnMain {
-                    print(error!)
-                    //self.activityIndicatorPhoto.stopAnimating()
-                    //self.missingImagesLabel.isHidden = false
-                    //self.photoCollectionView.isScrollEnabled = true
-                }
-            }
-            
-        self.dataController.load()
+        performUIUpdatesOnMain {
+            self.newsTableView.reloadData()
         }
+    
+        self.dataController.load()
     }
     
     // MARK: Functions

@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var debugTextLabel: UILabel!
-    @IBOutlet weak var activityIndicatorLogin: UIActivityIndicatorView!
+    @IBOutlet weak var activityIndicatorSearch: UIActivityIndicatorView!
     @IBOutlet var searchView: UIView!
     
     // MARK: Lets/Vars
@@ -49,14 +49,15 @@ class SearchViewController: UIViewController {
         
         self.tabBarController?.tabBar.isHidden = false
     }
+    
     // MARK: Actions
     
     // Login
     @IBAction func search(_ sender: Any) {
         
         performUIUpdatesOnMain {
-            self.activityIndicatorLogin.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-            self.activityIndicatorLogin.startAnimating()
+            self.activityIndicatorSearch.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.activityIndicatorSearch.startAnimating()
             self.searchButton.isEnabled = false
             self.debugTextLabel.text = ""
         }
@@ -65,14 +66,25 @@ class SearchViewController: UIViewController {
             performUIUpdatesOnMain {
                 self.debugTextLabel.text = "Search Field Empty"
                 self.searchButton.isEnabled = true
-                self.activityIndicatorLogin.stopAnimating()
+                self.activityIndicatorSearch.stopAnimating()
             }
             return
         } else {
             if let searchString = searchTextField.text {
                 Constants.NewsParameterValues.SearchText = searchString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
             }
-            completeLogin()
+        
+            NewsClient.shared.requestBandArticles() { (success, error) in
+                if success {
+                    self.completeLogin()
+                } else {
+                    performUIUpdatesOnMain {
+                        self.debugTextLabel.text = error!
+                        self.searchButton.isEnabled = true
+                        self.activityIndicatorSearch.stopAnimating()
+                    }
+                }
+            }
         }
         
     }
@@ -88,7 +100,7 @@ class SearchViewController: UIViewController {
             self.navigationController?.pushViewController(controller, animated: true)
             
             self.searchButton.isEnabled = true
-            self.activityIndicatorLogin.stopAnimating()
+            self.activityIndicatorSearch.stopAnimating()
         }
     }
     

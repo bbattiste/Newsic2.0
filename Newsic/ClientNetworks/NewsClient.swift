@@ -38,6 +38,16 @@ class NewsClient: NSObject {
                 if let jsonArray = json as? [String: AnyObject] {
                     print("jsonArray = \(jsonArray)")
                     
+                    guard let totalResults = jsonArray["totalResults"] as? Int else {
+                        completionHandler(false, "Cannot find key 'totalResults' in jsonArray: \(jsonArray)")
+                        return
+                    }
+                    
+                    if totalResults == 0 {
+                        completionHandler(false, "No Results For Search, Try Again")
+                        return
+                    }
+                    
                     if let articles = jsonArray["articles"] as? [[String : AnyObject]] {
                         
 //                        for article in articles { // Get each article, only one as of now

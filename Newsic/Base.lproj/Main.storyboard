@@ -89,7 +89,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Newsic" id="d5d-8i-u49"/>
                     <connections>
-                        <outlet property="activityIndicatorLogin" destination="mwt-Lf-JWP" id="E5j-AE-Gxa"/>
+                        <outlet property="activityIndicatorSearch" destination="mwt-Lf-JWP" id="LGu-Ql-Cu2"/>
                         <outlet property="debugTextLabel" destination="2QE-tg-dpc" id="qAT-kn-VsR"/>
                         <outlet property="searchButton" destination="6sg-LW-dtw" id="Zcp-Pg-CkK"/>
                         <outlet property="searchTextField" destination="ZXZ-rf-Wfi" id="Gqt-jb-TVU"/>
