@@ -127,13 +127,19 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let article = savedArticles[(indexPath as NSIndexPath).row]
         
         if isEditing {
+            if let index = savedArticles.index(of: article) {
+                savedArticles.remove(at: index)
+            }
+            print("article deleted")
+            savedTableView.deleteRows(at: [indexPath], with: .automatic)
+            print("Article and row deleted")
             return
         } else {
-            savedTableViewActivityIndicator.startAnimating()
-            let article = savedArticles[(indexPath as NSIndexPath).row]
             let articleURL = article.urlString
+            savedTableViewActivityIndicator.startAnimating()
             UIApplication.shared.open(URL(string: articleURL!)!, options: [:], completionHandler: { (status) in
             })
             savedTableViewActivityIndicator.stopAnimating()
