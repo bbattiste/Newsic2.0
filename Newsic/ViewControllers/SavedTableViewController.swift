@@ -24,13 +24,11 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Display Delete button and adjust font size in the navigation bar.
+        // TODO: Adjust title font size in the navigation bar.
 
-//        if let fontSize = self.navigationController?.navigationBar.titleTextAttributes {
-//            fontSize = [NSAttributedString.Key.font: UIFont(name: "mplus-1c-regular", size: 21)!]
+//        if let navController = navigationController {
+//            navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "mplus-1c-regular", size: 21)!]
 //        }
-        
-        
         
         self.dataController.load()
     }
@@ -133,7 +131,6 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        //TODO: edit button says Delete
         if editingStyle == .delete {
             let article = savedArticles[(indexPath as NSIndexPath).row]
             performUIUpdatesOnMain {
