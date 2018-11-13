@@ -31,7 +31,10 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        print("vewWillAppear called")
+        performUIUpdatesOnMain {
+            self.savedTableView.reloadData()
+        }
 //        fetchSavedArticles()
 //        if let articlesTOPrint = fetchedResultsController.fetchedObjects {
 //            print("articlesTOPrint = \(articlesTOPrint)")
@@ -40,13 +43,17 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
         let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
         if let result = try? dataController.viewContext.fetch(fetchRequest) {
             print(result)
-        savedArticles = result
+            savedArticles = result
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        print("viewWillDissapear called")
         super.viewDidDisappear(animated)
         fetchedResultsController = nil
+        performUIUpdatesOnMain {
+            self.savedTableView.reloadData()
+        }
     }
     
     // MARK: Functions
@@ -137,16 +144,18 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
         let article = savedArticles[(indexPath as NSIndexPath).row]
         
         if isEditing {
-            dataController.viewContext.delete(article)
-            try? dataController.viewContext.save()
-            print("data deleted")
-            if let index = savedArticles.index(of: article) {
-                savedArticles.remove(at: index)
+            performUIUpdatesOnMain {
+                self.dataController.viewContext.delete(article)
+                try? self.dataController.viewContext.save()
+                print("data deleted")
+                if let index = self.savedArticles.index(of: article) {
+                    self.savedArticles.remove(at: index)
+                }
+                print("article deleted")
+                self.savedTableView.deleteRows(at: [indexPath], with: .automatic)
+                print("Article and row deleted")
+                return
             }
-            print("article deleted")
-            savedTableView.deleteRows(at: [indexPath], with: .automatic)
-            print("Article and row deleted")
-            return
         } else {
             let articleURL = article.urlString
             savedTableViewActivityIndicator.startAnimating()
@@ -160,11 +169,18 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let article = savedArticles[(indexPath as NSIndexPath).row]
-            if let index = savedArticles.index(of: article) {
-                savedArticles.remove(at: index)
+            performUIUpdatesOnMain {
+                self.dataController.viewContext.delete(article)
+                try? self.dataController.viewContext.save()
+                print("data deleted")
+                if let index = self.savedArticles.index(of: article) {
+                    self.savedArticles.remove(at: index)
+                }
+                print("article deleted")
+                self.savedTableView.deleteRows(at: [indexPath], with: .automatic)
+                print("Article and row deleted")
+                return
             }
-            savedTableView.deleteRows(at: [indexPath], with: .automatic)
-            print("Deleted")
             
 //            self.catNames.remove(at: indexPath.row)
 //            self.tableView.deleteRows(at: [indexPath], with: .automatic)
