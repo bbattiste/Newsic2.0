@@ -27,23 +27,19 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
         
         // Display an Edit button in the navigation bar.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        self.dataController.load()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         print("vewWillAppear called")
-        performUIUpdatesOnMain {
-            self.savedTableView.reloadData()
-        }
 //        fetchSavedArticles()
 //        if let articlesTOPrint = fetchedResultsController.fetchedObjects {
 //            print("articlesTOPrint = \(articlesTOPrint)")
 //        }
-        self.dataController.load()
-        let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
-        if let result = try? dataController.viewContext.fetch(fetchRequest) {
-            print(result)
-            savedArticles = result
+        performUIUpdatesOnMain {
+            self.savedTableView.reloadData()
         }
     }
     
@@ -86,6 +82,11 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
+        if let result = try? dataController.viewContext.fetch(fetchRequest) {
+            print(result)
+            savedArticles = result
+        }
         return savedArticles.count
         
 //        print(fetchedResultsController.sections?[section].numberOfObjects as! Int)
