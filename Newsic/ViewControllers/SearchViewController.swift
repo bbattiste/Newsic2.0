@@ -53,25 +53,28 @@ class SearchViewController: UIViewController {
     
     // Login
     @IBAction func search(_ sender: Any) {
-        activityIndicatorLogin.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-        activityIndicatorLogin.startAnimating()
-        searchButton.isEnabled = false
         
-        debugTextLabel.text = ""
+        performUIUpdatesOnMain {
+            self.activityIndicatorLogin.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.activityIndicatorLogin.startAnimating()
+            self.searchButton.isEnabled = false
+            self.debugTextLabel.text = ""
+        }
         
-        if searchTextField.text!.isEmpty {
-            debugTextLabel.text = "search Field Empty"
-            searchButton.isEnabled = true
-            activityIndicatorLogin.stopAnimating()
+        if self.searchTextField.text!.isEmpty {
+            performUIUpdatesOnMain {
+                self.debugTextLabel.text = "Search Field Empty"
+                self.searchButton.isEnabled = true
+                self.activityIndicatorLogin.stopAnimating()
+            }
             return
         } else {
             if let searchString = searchTextField.text {
                 Constants.NewsParameterValues.SearchText = searchString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
             }
+            completeLogin()
         }
         
-        // postSession()
-        completeLogin()
     }
     
     // MARK: Functions
