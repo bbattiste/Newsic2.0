@@ -115,6 +115,7 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        //TODO: edit button says Delete
         if editingStyle == .delete {
             let article = savedArticles[(indexPath as NSIndexPath).row]
             performUIUpdatesOnMain {

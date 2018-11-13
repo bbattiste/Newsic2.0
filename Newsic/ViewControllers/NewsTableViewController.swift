@@ -124,6 +124,7 @@ class NewsTableViewController: UITableViewController {
         cell.buttonObject =
             {
                 //TODO: IF article is saved, row already be in saved state
+                //TODO: IF no results found, label shown
                 print("buttonTapped")
                 if cell.cellSaveButton.titleLabel!.text! == "Save" {
                     cell.cellSaveButton.backgroundColor = UIColor.gray
