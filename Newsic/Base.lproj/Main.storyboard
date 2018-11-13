@@ -411,8 +411,15 @@
                             <outlet property="delegate" destination="orz-66-bbN" id="vRS-ex-igi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Saved Articles" largeTitleDisplayMode="never" id="qaj-Su-1OQ" userLabel="Saved News"/>
+                    <navigationItem key="navigationItem" title="Saved Articles" largeTitleDisplayMode="never" id="qaj-Su-1OQ" userLabel="Saved News">
+                        <barButtonItem key="rightBarButtonItem" title="Delete" id="1Oa-9p-dSg">
+                            <connections>
+                                <action selector="deleteButtonTapped:" destination="orz-66-bbN" id="IPd-Wp-Kn6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="deleteButton" destination="1Oa-9p-dSg" id="rhp-Qw-VEh"/>
                         <outlet property="savedTableView" destination="zKY-cf-s7J" id="a7V-Zi-rQd"/>
                         <outlet property="savedTableViewActivityIndicator" destination="xuO-ci-JRx" id="pO8-g7-yS3"/>
                     </connections>

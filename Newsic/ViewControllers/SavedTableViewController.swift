@@ -14,6 +14,7 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     // MARK: Outlets
     @IBOutlet var savedTableView: UITableView!
     @IBOutlet weak var savedTableViewActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
     
     // MARK: Vars/lets
     
@@ -23,8 +24,13 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Display an Edit button in the navigation bar.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        // Display Delete button and adjust font size in the navigation bar.
+
+//        if let fontSize = self.navigationController?.navigationBar.titleTextAttributes {
+//            fontSize = [NSAttributedString.Key.font: UIFont(name: "mplus-1c-regular", size: 21)!]
+//        }
+        
+        
         
         self.dataController.load()
     }
@@ -34,6 +40,18 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
         super.viewWillAppear(true)
         self.savedTableView.reloadData()
     }
+    
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        if isEditing == false {
+            isEditing = true
+            deleteButton.title = "Done"
+        } else {
+            isEditing = false
+            deleteButton.title = "Delete"
+        }
+    }
+    
+    
     
     // MARK: - Table view data source
     
@@ -121,13 +139,11 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
             performUIUpdatesOnMain {
                 self.dataController.viewContext.delete(article)
                 try? self.dataController.viewContext.save()
-                print("data deleted")
                 if let index = self.savedArticles.index(of: article) {
                     self.savedArticles.remove(at: index)
                 }
-                print("article deleted")
                 self.savedTableView.deleteRows(at: [indexPath], with: .automatic)
-                print("Article and row deleted")
+                self.navigationItem.rightBarButtonItem?.title = "Delete"
                 return
             }
         }
