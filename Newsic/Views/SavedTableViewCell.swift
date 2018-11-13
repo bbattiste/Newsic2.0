@@ -12,18 +12,8 @@ class SavedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var cellLabel: UILabel!
-    @IBOutlet weak var cellDeleteButton: UIButton!
     @IBOutlet weak var cellDateLabel: UILabel!
     @IBOutlet weak var cellSourceLabel: UILabel!
-    
-    var buttonObject : (() -> Void)? = nil
-    
-    @IBAction func deleteButtonPressed(_ sender: Any) {
-        if let btnAction = self.buttonObject
-        {
-            btnAction()
-        }
-    }
     
     
     override func awakeFromNib() {

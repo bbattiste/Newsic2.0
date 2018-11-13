@@ -15,12 +15,10 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     @IBOutlet var savedTableView: UITableView!
     @IBOutlet weak var savedTableViewActivityIndicator: UIActivityIndicatorView!
     
+    // MARK: Vars/lets
     
-    
-    var testArray = ["a", "b", "c", "d", "e"]
     var savedArticles = [Article]()
     let dataController = DataController(modelName: "Newsic")
-    var fetchedResultsController:NSFetchedResultsController<Article>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,48 +29,10 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
         self.dataController.load()
     }
     
+    // Reload table between tabbars
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print("vewWillAppear called")
-//        fetchSavedArticles()
-//        if let articlesTOPrint = fetchedResultsController.fetchedObjects {
-//            print("articlesTOPrint = \(articlesTOPrint)")
-//        }
-        performUIUpdatesOnMain {
-            self.savedTableView.reloadData()
-        }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        print("viewWillDissapear called")
-        super.viewDidDisappear(animated)
-        fetchedResultsController = nil
-        performUIUpdatesOnMain {
-            self.savedTableView.reloadData()
-        }
-    }
-    
-    // MARK: Functions
-    
-    func fetchSavedArticles() {
-        let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
-        let predicate = NSPredicate(format: "source == %@", "Slate.com")
-        fetchRequest.predicate = predicate
-        
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "saveDate", ascending: true)]
-        
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        self.fetchedResultsController.delegate = self
-        do {
-            try self.fetchedResultsController.performFetch()
-            print("fetchPerformed")
-        } catch {
-            fatalError("The fetch could not be performed: \(error.localizedDescription)")
-        }
-    }
-    
-    func deleteArticle() {
-        
+        self.savedTableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -88,9 +48,6 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
             savedArticles = result
         }
         return savedArticles.count
-        
-//        print(fetchedResultsController.sections?[section].numberOfObjects as! Int)
-//        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     
@@ -127,17 +84,7 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
         
         // Source
         cell.cellSourceLabel?.text = articleForCell.source
-        
-        // Save Button
-        cell.buttonObject =
-            {
-            print("button tapped")
                 
-//            let articleToDelete = .object(at: indexPath)
-//            dataController.viewContext.delete(photoToDelete)
-//            try? dataController.viewContext.save()
-        }
-        
         return cell
     }
     
@@ -182,25 +129,7 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
                 print("Article and row deleted")
                 return
             }
-            
-//            self.catNames.remove(at: indexPath.row)
-//            self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
+    
 }
-
-//extension SavedTableViewController: NSFetchedResultsControllerDelegate {
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-//
-//    }
-//
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-//
-//    }
-//
-//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//    }
-//
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//    }
-//}
