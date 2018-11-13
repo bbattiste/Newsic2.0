@@ -30,6 +30,12 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
 //            navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "mplus-1c-regular", size: 21)!]
 //        }
         
+        if let navFont = UIFont(name: "mplus-1c-regular", size: 21) {
+            let navBarAttributesDictionary: [NSAttributedString.Key: Any] = [
+                NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue): navFont ]
+            UINavigationBar.appearance().titleTextAttributes = navBarAttributesDictionary
+        }
+        
         self.dataController.load()
     }
     
