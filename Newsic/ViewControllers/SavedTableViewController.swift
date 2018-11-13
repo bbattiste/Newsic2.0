@@ -100,11 +100,18 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
         cell.cellDateLabel?.text = articleForCell.date
         
         // Image
-        if let url = URL(string: (articleForCell.imageURL)!) {
-            DispatchQueue.global().async {
-                if let urlData = try? Data(contentsOf: url) {
-                    performUIUpdatesOnMain {
-                        cell.cellImage?.image = UIImage(data: urlData)
+        let urlCheck = articleForCell.imageURL
+        if urlCheck == nil || urlCheck == ("") {
+            performUIUpdatesOnMain {
+                cell.cellImage?.image = UIImage(named: "missingImage")
+            }
+        } else {
+            if let url = URL(string: (articleForCell.imageURL)!) {
+                DispatchQueue.global().async {
+                    if let urlData = try? Data(contentsOf: url) {
+                        performUIUpdatesOnMain {
+                            cell.cellImage?.image = UIImage(data: urlData)
+                        }
                     }
                 }
             }
@@ -130,6 +137,9 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
         let article = savedArticles[(indexPath as NSIndexPath).row]
         
         if isEditing {
+            dataController.viewContext.delete(article)
+            try? dataController.viewContext.save()
+            print("data deleted")
             if let index = savedArticles.index(of: article) {
                 savedArticles.remove(at: index)
             }
@@ -149,6 +159,11 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let article = savedArticles[(indexPath as NSIndexPath).row]
+            if let index = savedArticles.index(of: article) {
+                savedArticles.remove(at: index)
+            }
+            savedTableView.deleteRows(at: [indexPath], with: .automatic)
             print("Deleted")
             
 //            self.catNames.remove(at: indexPath.row)
