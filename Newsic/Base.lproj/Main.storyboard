@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="missingImage" translatesAutoresizingMaskIntoConstraints="NO" id="ugX-BA-tg4">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="ugX-BA-tg4">
                                 <rect key="frame" x="67" y="103" width="240" height="165"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="FUL-NB-2Af"/>
@@ -369,7 +369,7 @@
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forwardArrorw" translatesAutoresizingMaskIntoConstraints="NO" id="Mly-OL-T1L">
                                             <rect key="frame" x="315" y="20" width="44" height="43"/>
-                                            <color key="backgroundColor" red="0.33462011530000002" green="0.05490531069" blue="0.5738618338" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.33333333333333331" green="0.054901960784313725" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="43" id="CSV-Ja-Agk"/>
                                                 <constraint firstAttribute="width" constant="44" id="SCc-WU-yEo"/>
@@ -431,6 +431,6 @@
     </scenes>
     <resources>
         <image name="forwardArrorw" width="24" height="24"/>
-        <image name="missingImage" width="213" height="120"/>
+        <image name="logo" width="121.5" height="121.5"/>
     </resources>
 </document>
