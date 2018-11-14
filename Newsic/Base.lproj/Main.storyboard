@@ -350,6 +350,10 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </label>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HVA-z5-Tb8">
+                                            <rect key="frame" x="0.0" y="3" width="78" height="78"/>
+                                            <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        </activityIndicatorView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qj6-XN-syr">
                                             <rect key="frame" x="0.0" y="3" width="78" height="78"/>
                                             <constraints>
@@ -394,20 +398,25 @@
                                         <constraint firstAttribute="bottom" secondItem="B0N-MU-Kqi" secondAttribute="bottom" constant="3" id="EX9-dK-1d6"/>
                                         <constraint firstItem="rQI-JQ-n4A" firstAttribute="leading" secondItem="qj6-XN-syr" secondAttribute="trailing" constant="8" id="Enb-Ke-dap"/>
                                         <constraint firstItem="B0N-MU-Kqi" firstAttribute="top" secondItem="rQI-JQ-n4A" secondAttribute="bottom" constant="8" id="FZu-zw-saI"/>
+                                        <constraint firstItem="HVA-z5-Tb8" firstAttribute="centerX" secondItem="qj6-XN-syr" secondAttribute="centerX" id="HE1-jV-PMO"/>
                                         <constraint firstItem="B0N-MU-Kqi" firstAttribute="top" secondItem="rQI-JQ-n4A" secondAttribute="bottom" constant="8" id="KrG-rj-d7q"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Mly-OL-T1L" secondAttribute="bottom" constant="10" id="LlR-hz-ocw"/>
                                         <constraint firstItem="qj6-XN-syr" firstAttribute="top" secondItem="rQI-JQ-n4A" secondAttribute="top" id="TvH-bj-T1L"/>
+                                        <constraint firstItem="HVA-z5-Tb8" firstAttribute="centerY" secondItem="qj6-XN-syr" secondAttribute="centerY" id="V0o-YG-jpt"/>
                                         <constraint firstItem="dTE-mW-a3R" firstAttribute="leading" secondItem="B0N-MU-Kqi" secondAttribute="trailing" constant="16" id="VVl-zl-nmD"/>
                                         <constraint firstItem="Mly-OL-T1L" firstAttribute="leading" secondItem="dTE-mW-a3R" secondAttribute="trailing" constant="8" id="Zf3-aH-6rG"/>
                                         <constraint firstItem="Mly-OL-T1L" firstAttribute="trailing" secondItem="zZZ-Ah-0v9" secondAttribute="trailingMargin" id="atW-v3-2hZ"/>
                                         <constraint firstItem="Mly-OL-T1L" firstAttribute="top" secondItem="zZZ-Ah-0v9" secondAttribute="topMargin" constant="9" id="cX2-HO-dHq"/>
+                                        <constraint firstItem="HVA-z5-Tb8" firstAttribute="width" secondItem="qj6-XN-syr" secondAttribute="width" id="cwR-VK-VxL"/>
                                         <constraint firstItem="Mly-OL-T1L" firstAttribute="leading" secondItem="rQI-JQ-n4A" secondAttribute="trailing" constant="8" id="djV-MN-LPN"/>
+                                        <constraint firstItem="HVA-z5-Tb8" firstAttribute="height" secondItem="qj6-XN-syr" secondAttribute="height" id="dvp-GJ-f3i"/>
                                         <constraint firstAttribute="bottom" secondItem="dTE-mW-a3R" secondAttribute="bottom" constant="3" id="wmH-Bq-LPf"/>
                                         <constraint firstItem="dTE-mW-a3R" firstAttribute="top" secondItem="rQI-JQ-n4A" secondAttribute="bottom" constant="8" id="zoj-6F-dtP"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
+                                    <outlet property="cellActivityIndicatorImage" destination="HVA-z5-Tb8" id="rg7-dW-O7M"/>
                                     <outlet property="cellDateLabel" destination="B0N-MU-Kqi" id="Sz7-LY-abw"/>
                                     <outlet property="cellImage" destination="qj6-XN-syr" id="cwU-jl-4gI"/>
                                     <outlet property="cellLabel" destination="rQI-JQ-n4A" id="dbh-mt-LoJ"/>
