@@ -123,7 +123,7 @@ extension SearchViewController: UITextFieldDelegate {
         resignIfFirstResponder(searchTextField)
     }
     
-    // textfields will return with return key
+    // textfield will return with return key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchTextField.resignFirstResponder()
         return true
