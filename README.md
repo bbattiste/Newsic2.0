@@ -10,6 +10,8 @@
 
 • Click Clone or download on the right and then click Download ZIP from the dropdown.  New[sic] will be under filename newsic and can be opened with Xcode.
 
+• Once Xcode is open, the user can click on the play button at the top of Xcode to build the app in a simulator.
+
 ## How to use?
 
 ### Initial Search View:
