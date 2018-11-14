@@ -29,15 +29,6 @@ class SearchViewController: UIViewController {
 //------------------------------------------------------------------------------
 // MARK: Lifecyle
     
-    // Lock phone orientation
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .portrait
-        } else {
-            return .portrait
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
