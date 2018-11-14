@@ -44,7 +44,7 @@ class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
     }
     
 //------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ class SearchViewController: UIViewController {
         }
         
         // If textField is empty, return with label: Search Field Empty
-        if self.searchTextField.text!.isEmpty {
+        if searchTextField.text!.isEmpty {
             performUIUpdatesOnMain {
                 self.debugTextLabel.text = "Search Field Empty"
                 self.searchButton.isEnabled = true

@@ -29,13 +29,13 @@ class SavedTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dataController.load()
+        dataController.load()
     }
     
     // Reload table between tabs
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.savedTableView.reloadData()
+        savedTableView.reloadData()
     }
     
 //------------------------------------------------------------------------------

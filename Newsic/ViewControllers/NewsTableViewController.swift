@@ -29,7 +29,7 @@ class NewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
         newsTableViewActivityIndicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         newsTableViewActivityIndicator.startAnimating()
         
@@ -37,7 +37,7 @@ class NewsTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Search", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.goToSearch))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Saved Articles", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.goToSavedArticles))
         
-        self.dataController.load()
+        dataController.load()
     }
     
 //------------------------------------------------------------------------------
@@ -45,14 +45,14 @@ class NewsTableViewController: UITableViewController {
     
     @objc func goToSearch() {
         newsTableViewActivityIndicator.startAnimating()
-        self.navigationController?.popToRootViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
         newsTableViewActivityIndicator.stopAnimating()
     }
     
     @objc func goToSavedArticles() {
         newsTableViewActivityIndicator.startAnimating()
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SavedTableViewController") as! SavedTableViewController
-        self.navigationController?.pushViewController(controller, animated: true)
+        let controller = storyboard?.instantiateViewController(withIdentifier: "SavedTableViewController") as! SavedTableViewController
+        navigationController?.pushViewController(controller, animated: true)
         newsTableViewActivityIndicator.stopAnimating()
     }
     
@@ -158,7 +158,7 @@ class NewsTableViewController: UITableViewController {
         }
         
         
-        self.newsTableViewActivityIndicator.stopAnimating()
+        newsTableViewActivityIndicator.stopAnimating()
         return cell
     }
     

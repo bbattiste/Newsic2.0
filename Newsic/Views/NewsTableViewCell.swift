@@ -20,7 +20,7 @@ class NewsTableViewCell: UITableViewCell {
     var buttonObject : (() -> Void)? = nil
 
     @IBAction func saveButtonPressed(_ sender: Any) {
-        if let btnAction = self.buttonObject
+        if let btnAction = buttonObject
         {
             btnAction()
         }
