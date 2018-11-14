@@ -9,7 +9,6 @@
 import Foundation
 
 struct GlobalVariables {
-    // TODO: to become userdefaults
     static var articleArray = [[String: AnyObject]]()
     
 }

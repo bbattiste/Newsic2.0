@@ -9,53 +9,67 @@
 import UIKit
 import CoreData
 
-class SavedTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class SavedTableViewController: UITableViewController {
+
+//------------------------------------------------------------------------------
+// MARK: Outlets
     
-    // MARK: Outlets
     @IBOutlet var savedTableView: UITableView!
     @IBOutlet weak var savedTableViewActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var deleteButton: UIBarButtonItem!
     
-    // MARK: Vars/lets
+//------------------------------------------------------------------------------
+// MARK: Vars/Lets
     
     var savedArticles = [Article]()
     let dataController = DataController(modelName: "Newsic")
     
+//------------------------------------------------------------------------------
+// MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // TODO: Adjust title font size in the navigation bar.
-
-//        if let navController = navigationController {
-//            navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "mplus-1c-regular", size: 21)!]
-//        }
-        
-        if let navFont = UIFont(name: "mplus-1c-regular", size: 21) {
-            let navBarAttributesDictionary: [NSAttributedString.Key: Any] = [
-                NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue): navFont ]
-            UINavigationBar.appearance().titleTextAttributes = navBarAttributesDictionary
-        }
-        
         self.dataController.load()
     }
     
-    // Reload table between tabbars
+    // Reload table between tabs
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.savedTableView.reloadData()
     }
     
+//------------------------------------------------------------------------------
+// MARK: Actions
+    
+    // Toggle isEditing to delete data with delete button
     @IBAction func deleteButtonTapped(_ sender: Any) {
-        if isEditing == false {
-            isEditing = true
-            deleteButton.title = "Done"
-        } else {
+        if isEditing {
             isEditing = false
             deleteButton.title = "Delete"
+        } else {
+            isEditing = true
+            deleteButton.title = "Done"
         }
     }
     
-    // MARK: - Table view data source
+//------------------------------------------------------------------------------
+// MARK: Functions
+    
+    // Delete saved article and row containing article
+    func deleteData(articleToDelete: Article, fromIndexPath: IndexPath) {
+        performUIUpdatesOnMain {
+            self.dataController.viewContext.delete(articleToDelete)
+            try? self.dataController.viewContext.save()
+            if let index = self.savedArticles.index(of: articleToDelete) {
+                self.savedArticles.remove(at: index)
+            }
+            self.savedTableView.deleteRows(at: [fromIndexPath], with: .automatic)
+            return
+        }
+    }
+    
+//------------------------------------------------------------------------------
+// MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -64,7 +78,6 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
         if let result = try? dataController.viewContext.fetch(fetchRequest) {
-            print("savedResults = \(result)")
             savedArticles = result
         }
         return savedArticles.count
@@ -74,8 +87,7 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! SavedTableViewCell
         let articleForCell = savedArticles[(indexPath as NSIndexPath).row]
-        
-        print("cellForRowAt called")
+
         // Configure the cell...
         
         // Title
@@ -110,21 +122,13 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article = savedArticles[(indexPath as NSIndexPath).row]
-        
+       
+        // Delete row data if editing
         if isEditing {
-            performUIUpdatesOnMain {
-                self.dataController.viewContext.delete(article)
-                try? self.dataController.viewContext.save()
-                print("data deleted")
-                if let index = self.savedArticles.index(of: article) {
-                    self.savedArticles.remove(at: index)
-                }
-                print("article deleted")
-                self.savedTableView.deleteRows(at: [indexPath], with: .automatic)
-                print("Article and row deleted")
-                return
-            }
+            deleteData(articleToDelete: article, fromIndexPath: indexPath)
         } else {
+            
+            // Open article link in Safari
             let articleURL = article.urlString
             savedTableViewActivityIndicator.startAnimating()
             UIApplication.shared.open(URL(string: articleURL!)!, options: [:], completionHandler: { (status) in
@@ -135,18 +139,11 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        // Delete row by swiping left
         if editingStyle == .delete {
             let article = savedArticles[(indexPath as NSIndexPath).row]
-            performUIUpdatesOnMain {
-                self.dataController.viewContext.delete(article)
-                try? self.dataController.viewContext.save()
-                if let index = self.savedArticles.index(of: article) {
-                    self.savedArticles.remove(at: index)
-                }
-                self.savedTableView.deleteRows(at: [indexPath], with: .automatic)
-                self.navigationItem.rightBarButtonItem?.title = "Delete"
-                return
-            }
+            deleteData(articleToDelete: article, fromIndexPath: indexPath)
         }
     }
     

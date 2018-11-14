@@ -14,8 +14,7 @@ class SavedTableViewCell: UITableViewCell {
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var cellDateLabel: UILabel!
     @IBOutlet weak var cellSourceLabel: UILabel!
-    
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

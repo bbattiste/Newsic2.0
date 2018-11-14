@@ -38,8 +38,8 @@ struct Constants {
 }
 
 // Notes about Values:
-//
-// sortby can be:
+
+// Sortby can be:
 //relevancy = articles more closely related to q come first.
 //popularity = articles from popular sources and publishers come first.
 //publishedAt = newest articles come first. Default

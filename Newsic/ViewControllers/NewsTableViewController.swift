@@ -12,12 +12,19 @@ import CoreData
 
 class NewsTableViewController: UITableViewController {
     
-    // MARK: Outlets
+//------------------------------------------------------------------------------
+// MARK: Outlets
     
     @IBOutlet var newsTableView: UITableView!
     @IBOutlet weak var newsTableViewActivityIndicator: UIActivityIndicatorView!
     
+//------------------------------------------------------------------------------
+// MARK: Vars/Lets
+    
     let dataController = DataController(modelName: "Newsic")
+    
+//------------------------------------------------------------------------------
+// MARK: Lifcycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,18 +33,15 @@ class NewsTableViewController: UITableViewController {
         newsTableViewActivityIndicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         newsTableViewActivityIndicator.startAnimating()
         
-        //MARK: NAV BAR buttons
+        // create nav bar buttons
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Search", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.goToSearch))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Saved Articles", style: UIBarButtonItem.Style(rawValue: 2)!, target: self, action: #selector(NewsTableViewController.goToSavedArticles))
         
-        performUIUpdatesOnMain {
-            self.newsTableView.reloadData()
-        }
-    
         self.dataController.load()
     }
     
-    // MARK: Functions
+//------------------------------------------------------------------------------
+// MARK: Functions
     
     @objc func goToSearch() {
         self.navigationController?.popToRootViewController(animated: true)
@@ -48,6 +52,7 @@ class NewsTableViewController: UITableViewController {
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
+    // Create a more readable date for user
     func createReadableDate(dateToConvert: String) -> String {
         let deFormatter = DateFormatter()
         deFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -59,33 +64,27 @@ class NewsTableViewController: UITableViewController {
         return newDate
     }
     
-    
+    // fetch articles using title to delete one or more with same title
     func deleteSavedArticle(articleTitle: String) {
         let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
         let predicate = NSPredicate(format: "title == %@", articleTitle)
         fetchRequest.predicate = predicate
         if let result = try? dataController.viewContext.fetch(fetchRequest) {
-            print("result of article title as predicate = \(result)")
             for article in result {
-                print("article in result = \(article)")
                 dataController.viewContext.delete(article)
                 try? dataController.viewContext.save()
             }
-            
-            print("article Deleted")
         }
     }
     
-    
-    // MARK: - Table view data source
+//------------------------------------------------------------------------------
+// MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("GlobalVariables.articleArray.count = \(GlobalVariables.articleArray.count)")
         return GlobalVariables.articleArray.count
     }
     
@@ -96,6 +95,7 @@ class NewsTableViewController: UITableViewController {
         let articleForCell = GlobalVariables.articleArray[(indexPath as NSIndexPath).row]
         
         // Configure the cell...
+        
         // Title
         cell.cellLabel?.text = articleForCell["title"] as? String
         
@@ -130,17 +130,11 @@ class NewsTableViewController: UITableViewController {
         // Save Button
         cell.buttonObject =
             {
-                //TODO: IF article is saved, row already be in saved state
-                //TODO: disable buttons until finish load
-                
-                print("buttonTapped")
-                
-                
+                // If not saved: Configure the articleToSave context...
                 if cell.cellSaveButton.titleLabel!.text! == "Save" {
                     let articleToSave = Article(context: self.dataController.viewContext)
                     cell.cellSaveButton.backgroundColor = UIColor.gray
                     cell.cellSaveButton.setTitle("Saved", for: UIControl.State.normal)
-                    
                     
                     articleToSave.title = cell.cellLabel?.text
                     articleToSave.date = cell.cellDateLabel?.text
@@ -150,28 +144,13 @@ class NewsTableViewController: UITableViewController {
                     articleToSave.saveDate = Date()
                         
                     try? self.dataController.viewContext.save()
-                    print("articleToSave = \(articleToSave)")
-                    print("data saved")
+                    
+                // If already saved: Delete all saves of article
                 } else {
-                    
                     self.deleteSavedArticle(articleTitle: (cell.cellLabel?.text)!)
-                    
-//                    self.dataController.viewContext.delete(articleToSave)
-//                    try? self.dataController.viewContext.save()
-//                    print("article Deleted")
-                    
                     cell.cellSaveButton.backgroundColor = #colorLiteral(red: 0.3346201153, green: 0.05490531069, blue: 0.5738618338, alpha: 1)
                     cell.cellSaveButton.setTitle("Save", for: UIControl.State.normal)
                 }
-                
-                
-                //cell.cellSaveButton.titleLabel = "Saved"
-                // Save article entity of 5 attributes including url
-                //let articleToSave = Article(context: self.dataController.viewContext)
-//                articleToSave.title = cell.cellLabel?.text
-//                print("title from tap = \(String(describing: articleToSave.title))")
-                
-                //self.view.addSubview(self.someotherView)
         }
         
         newsTableViewActivityIndicator.stopAnimating()
@@ -180,6 +159,7 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        // Open article link in Safari
         newsTableViewActivityIndicator.startAnimating()
         let article = GlobalVariables.articleArray[(indexPath as NSIndexPath).row]
         let articleURL = article["url"] as! String

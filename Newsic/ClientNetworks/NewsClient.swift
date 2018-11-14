@@ -12,8 +12,6 @@ import CoreData
 
 class NewsClient: NSObject {
     
-    //attribution: Wyatt Mufson: https://github.com/WyattMufson/NewsAPI-Swift
-    
     static var shared = NewsClient()
     
     func requestBandArticles(completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void) {
@@ -21,25 +19,21 @@ class NewsClient: NSObject {
         // Initialize News API Manager
         let nam = NewsAPIManager()
         
+        // Get 29 days ago to conform to newsAPI standards fromDate
         let monthsToSubtract = -1
         let daysToAdd = 1
         let oneMonthAgoDate = Calendar.current.date(byAdding: .month, value: monthsToSubtract, to: Date())
         let datePlusOneDay = Calendar.current.date(byAdding: .day, value: daysToAdd, to: oneMonthAgoDate!)
         Constants.NewsParameterValues.FromDate = usableDate(date: datePlusOneDay!)
         
-        //TODO: to become userdefaults? Maybe
-        //var currentArticles = [UserDefaults.standard.object(forKey: "NewsAPI-Swift Articles")]
-        var currentArticles = GlobalVariables.articleArray
-        
-        nam.getArticles() {data in // Getting articles from "everything" search
+        // Getting articles from "everything" search in News API Manager
+        nam.getArticles() {data in
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                
                 if let jsonArray = json as? [String: AnyObject] {
-                    print("jsonArray = \(jsonArray)")
                     
                     guard let totalResults = jsonArray["totalResults"] as? Int else {
-                        completionHandler(false, "Cannot find key 'totalResults' in jsonArray: \(jsonArray)")
+                        completionHandler(false, "Cannot find key 'totalResults' in jsonArray")
                         return
                     }
                     
@@ -49,36 +43,11 @@ class NewsClient: NSObject {
                     }
                     
                     if let articles = jsonArray["articles"] as? [[String : AnyObject]] {
-                        
-//                        for article in articles { // Get each article, only one as of now
-//                            currentArticles.append(article)
-//                            
-//                            //guard let rawArticle = articles[0]
-//                            
-//                            print("article = \(String(describing: article))")
-//                            print("title = \(String(describing: article["title"]))")
-//                        }
-                        //print(currentArticles)
-                        
-                        // TODO: Pick one of the 2 below
-                        GlobalVariables.articleArray = currentArticles
                         GlobalVariables.articleArray = articles
-                        
-                        print("GlobalVariables count in call = \(GlobalVariables.articleArray.count)")
-                        print("GlobalVariables.articleArray = \(GlobalVariables.articleArray)")
-                        for article in articles {
-                            print("title = \(String(describing: article["title"]))")
-                        }
-                        
-                        // If wanting more than 1 article per artist, use this to not duplicate: !currentArticles.contains(article) {
-                        //currentArticles.append(article)
-                        //}
-                        // Use to save to userdefaults: UserDefaults.standard.set(currentArticles, forKey: "NewsAPI-Swift Articles")
                     }
                     completionHandler(true, nil)
                 }
             } catch {
-                print("error serializing JSON: \(String(describing:error))")
                 completionHandler(false, String(describing: error))
             }
         }
@@ -87,18 +56,18 @@ class NewsClient: NSObject {
     // Create usable dates for client
     func usableDate(date: Date) -> String {
         let formatter = DateFormatter()
-        // initially set the format based on your datepicker date / server String
+        //set formatter String date
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        let myString = formatter.string(from: date) // string purpose I add here
-        // convert your string to date
-        let yourDate = formatter.date(from: myString)
-        //then again set the date format whhich type of output you need
+        // convert date to string with formatter
+        let oldString = formatter.string(from: date)
+        // convert string to date
+        let newDate = formatter.date(from: oldString)
+        //set date format to needed output
         formatter.dateFormat = "yyyy-MM-dd"
-        // again convert your date to string
-        let myStringafd = formatter.string(from: yourDate!)
+        // convert date to string with formatter
+        let newStringDate = formatter.string(from: newDate!)
         
-        return myStringafd
+        return newStringDate
     }
     
 }

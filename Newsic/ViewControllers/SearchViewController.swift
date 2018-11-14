@@ -11,8 +11,9 @@ import Foundation
 import CoreData
 
 class SearchViewController: UIViewController {
-    
-    // MARK: Outlets and variables
+
+//------------------------------------------------------------------------------
+// MARK: Outlets and variables
     
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var searchTextField: UITextField!
@@ -20,10 +21,13 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var activityIndicatorSearch: UIActivityIndicatorView!
     @IBOutlet var searchView: UIView!
     
-    // MARK: Lets/Vars
+//------------------------------------------------------------------------------
+// MARK: Lets/Vars
+    
     var dataController: DataController!
     
-    // MARK: Lifecyle
+//------------------------------------------------------------------------------
+// MARK: Lifecyle
     
     // Lock phone orientation
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -41,7 +45,6 @@ class SearchViewController: UIViewController {
         searchView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture))
         searchView.addGestureRecognizer(tapGesture)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +53,8 @@ class SearchViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    // MARK: Actions
+//------------------------------------------------------------------------------
+// MARK: Actions
     
     // Login
     @IBAction func search(_ sender: Any) {
@@ -62,6 +66,7 @@ class SearchViewController: UIViewController {
             self.debugTextLabel.text = ""
         }
         
+        // If textField is empty, return with label: Search Field Empty
         if self.searchTextField.text!.isEmpty {
             performUIUpdatesOnMain {
                 self.debugTextLabel.text = "Search Field Empty"
@@ -70,10 +75,12 @@ class SearchViewController: UIViewController {
             }
             return
         } else {
+            // capture textField to be used in client API
             if let searchString = searchTextField.text {
                 Constants.NewsParameterValues.SearchText = searchString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
             }
-        
+            
+            // Perform API request
             NewsClient.shared.requestBandArticles() { (success, error) in
                 if success {
                     self.completeLogin()
@@ -89,30 +96,23 @@ class SearchViewController: UIViewController {
         
     }
     
-    // MARK: Functions
+//------------------------------------------------------------------------------
+// MARK: Functions
     
     @objc func completeLogin() {
         performUIUpdatesOnMain {
-            self.debugTextLabel.text = ""
-            self.setUIEnabled(true)
-            
+            // move to NewsTableViewController
             let controller = self.storyboard?.instantiateViewController(withIdentifier: "NewsTableViewController") as! NewsTableViewController
             self.navigationController?.pushViewController(controller, animated: true)
             
-            self.searchButton.isEnabled = true
+            self.setUIEnabled(true)
             self.activityIndicatorSearch.stopAnimating()
         }
     }
-    
-    func displayError(_ error: String){
-        performUIUpdatesOnMain {
-            self.setUIEnabled(true)
-            self.debugTextLabel.text = error
-        }
-    }
-    
+
 }
 
+//------------------------------------------------------------------------------
 // MARK: - LoginViewController: UITextFieldDelegate
 
 extension SearchViewController: UITextFieldDelegate {
@@ -130,6 +130,7 @@ extension SearchViewController: UITextFieldDelegate {
     
 }
 
+//------------------------------------------------------------------------------
 // MARK: - LoginViewController (Configure UI)
 
 private extension SearchViewController {
