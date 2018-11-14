@@ -105,15 +105,20 @@ class SavedTableViewController: UITableViewController {
         } else {
             if let url = URL(string: (articleForCell.imageURL)!) {
                 DispatchQueue.global().async {
-                    if let urlData = try? Data(contentsOf: url) {
+                    do {
+                        let imgData = try NSData(contentsOf: url, options: NSData.ReadingOptions())
                         performUIUpdatesOnMain {
-                            cell.cellImage?.image = UIImage(data: urlData)
+                            cell.cellImage?.image = UIImage(data: imgData as Data)
+                        }
+                    } catch {
+                        performUIUpdatesOnMain {
+                            cell.cellImage?.image = UIImage(named: "missingImage")
                         }
                     }
                 }
             }
         }
-        
+                
         // Source
         cell.cellSourceLabel?.text = articleForCell.source
                 
