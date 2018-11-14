@@ -55,8 +55,6 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
         }
     }
     
-    
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,7 +64,7 @@ class SavedTableViewController: UITableViewController, NSFetchedResultsControlle
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
         if let result = try? dataController.viewContext.fetch(fetchRequest) {
-            print(result)
+            print("savedResults = \(result)")
             savedArticles = result
         }
         return savedArticles.count

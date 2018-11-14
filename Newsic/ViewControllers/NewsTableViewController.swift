@@ -59,6 +59,24 @@ class NewsTableViewController: UITableViewController {
         return newDate
     }
     
+    
+    func deleteSavedArticle(articleTitle: String) {
+        let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
+        let predicate = NSPredicate(format: "title == %@", articleTitle)
+        fetchRequest.predicate = predicate
+        if let result = try? dataController.viewContext.fetch(fetchRequest) {
+            print("result of article title as predicate = \(result)")
+            for article in result {
+                print("article in result = \(article)")
+                dataController.viewContext.delete(article)
+                try? dataController.viewContext.save()
+            }
+            
+            print("article Deleted")
+        }
+    }
+    
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -114,12 +132,16 @@ class NewsTableViewController: UITableViewController {
             {
                 //TODO: IF article is saved, row already be in saved state
                 //TODO: disable buttons until finish load
+                
                 print("buttonTapped")
+                
+                
                 if cell.cellSaveButton.titleLabel!.text! == "Save" {
+                    let articleToSave = Article(context: self.dataController.viewContext)
                     cell.cellSaveButton.backgroundColor = UIColor.gray
                     cell.cellSaveButton.setTitle("Saved", for: UIControl.State.normal)
                     
-                    let articleToSave = Article(context: self.dataController.viewContext)
+                    
                     articleToSave.title = cell.cellLabel?.text
                     articleToSave.date = cell.cellDateLabel?.text
                     articleToSave.imageURL = articleForCell["urlToImage"] as? String
@@ -128,9 +150,16 @@ class NewsTableViewController: UITableViewController {
                     articleToSave.saveDate = Date()
                         
                     try? self.dataController.viewContext.save()
-                    
+                    print("articleToSave = \(articleToSave)")
                     print("data saved")
                 } else {
+                    
+                    self.deleteSavedArticle(articleTitle: (cell.cellLabel?.text)!)
+                    
+//                    self.dataController.viewContext.delete(articleToSave)
+//                    try? self.dataController.viewContext.save()
+//                    print("article Deleted")
+                    
                     cell.cellSaveButton.backgroundColor = #colorLiteral(red: 0.3346201153, green: 0.05490531069, blue: 0.5738618338, alpha: 1)
                     cell.cellSaveButton.setTitle("Save", for: UIControl.State.normal)
                 }
