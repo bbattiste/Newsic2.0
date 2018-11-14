@@ -150,7 +150,7 @@
         <scene sceneID="1Ge-U5-HLH">
             <objects>
                 <navigationController title="SavedNavigationController" id="1Ow-2e-c8F" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="0mK-NT-qpD"/>
+                    <tabBarItem key="tabBarItem" title="Saved" image="savedIcon" id="0mK-NT-qpD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GaJ-b3-8Ap">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -432,5 +432,6 @@
     <resources>
         <image name="forwardArrorw" width="24" height="24"/>
         <image name="logo" width="121.5" height="121.5"/>
+        <image name="savedIcon" width="75" height="50"/>
     </resources>
 </document>
