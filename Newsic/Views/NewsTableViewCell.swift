@@ -15,6 +15,7 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var cellSaveButton: UIButton!
     @IBOutlet weak var cellDateLabel: UILabel!
     @IBOutlet weak var cellSourceLabel: UILabel!
+    @IBOutlet weak var cellActivityIndicatorImage: UIActivityIndicatorView!
     
     var buttonObject : (() -> Void)? = nil
 
@@ -33,7 +34,7 @@ class NewsTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        cellActivityIndicatorImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
     }
 
 }

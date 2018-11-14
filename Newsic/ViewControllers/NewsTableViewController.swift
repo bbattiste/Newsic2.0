@@ -44,12 +44,16 @@ class NewsTableViewController: UITableViewController {
 // MARK: Functions
     
     @objc func goToSearch() {
+        newsTableViewActivityIndicator.startAnimating()
         self.navigationController?.popToRootViewController(animated: true)
+        newsTableViewActivityIndicator.stopAnimating()
     }
     
     @objc func goToSavedArticles() {
+        newsTableViewActivityIndicator.startAnimating()
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SavedTableViewController") as! SavedTableViewController
         self.navigationController?.pushViewController(controller, animated: true)
+        newsTableViewActivityIndicator.stopAnimating()
     }
     
     // Create a more readable date for user
@@ -153,7 +157,8 @@ class NewsTableViewController: UITableViewController {
                 }
         }
         
-        newsTableViewActivityIndicator.stopAnimating()
+        
+        self.newsTableViewActivityIndicator.stopAnimating()
         return cell
     }
     
