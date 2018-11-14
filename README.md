@@ -2,7 +2,7 @@
 
 ## What is New[sic]?
 
-• New[sic] lets users pull news articles based on any subject crawling and indexing through relevant articles from over 30,000 news sources and blogs within the last 29 days thanks to NewsAPI.org. 
+• New[sic] lets users pull news articles based on any subject crawling and indexing through relevant articles from over 30,000 news sources and blogs within the last 29 days thanks to and powered by NewsAPI.org. 
 
 ## Setup:
 
@@ -48,3 +48,7 @@ straight from this initial search view.
 • If the user accessed the saved articles view from the news view, they can return to the news view by tapping on the back button to the top left of the screen.
 
 • If the user accessed the saved articles view from the search view, they can return to the search view by tapping on the Search tab at the bottom left of the screen
+
+#### Attribution:
+A special thank you to Wyatt Mufson: Attribution to ideas on how to code the newsAPIManager.swift and NewsClient.swift:
+https://github.com/WyattMufson/NewsAPI-Swift
