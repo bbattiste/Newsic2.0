@@ -32,6 +32,9 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set textfield delegate
+        searchTextField.delegate = self
+        
         // Enable loginView tapable to return from firstResponder
         searchView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture))
@@ -51,6 +54,7 @@ class SearchViewController: UIViewController {
     @IBAction func search(_ sender: Any) {
         
         performUIUpdatesOnMain {
+            self.resignIfFirstResponder(self.searchTextField)
             self.activityIndicatorSearch.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.activityIndicatorSearch.startAnimating()
             self.searchButton.isEnabled = false
@@ -119,6 +123,11 @@ extension SearchViewController: UITextFieldDelegate {
         resignIfFirstResponder(searchTextField)
     }
     
+    // textfields will return with return key
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchTextField.resignFirstResponder()
+        return true
+    }
 }
 
 //------------------------------------------------------------------------------
