@@ -102,7 +102,6 @@ class NewsTableViewController: UITableViewController {
         
         // Title
         cell.cellLabel?.text = articleForCell["title"] as? String
-        
         // Date
         let dateToUse = createReadableDate(dateToConvert: (articleForCell["publishedAt"] as? String)!)
         cell.cellDateLabel?.text = dateToUse
@@ -116,9 +115,14 @@ class NewsTableViewController: UITableViewController {
         } else {
             if let url = URL(string: (articleForCell["urlToImage"] as? String)!) {
                 DispatchQueue.global().async {
-                    if let urlData = try? Data(contentsOf: url) {
+                    do {
+                        let imgData = try NSData(contentsOf: url, options: NSData.ReadingOptions())
                         performUIUpdatesOnMain {
-                            cell.cellImage?.image = UIImage(data: urlData)
+                            cell.cellImage?.image = UIImage(data: imgData as Data)
+                        }
+                    } catch {
+                        performUIUpdatesOnMain {
+                            cell.cellImage?.image = UIImage(named: "missingImage")
                         }
                     }
                 }
