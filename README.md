@@ -21,6 +21,8 @@ users will be brought to all the news articles the app found in the news view.
 • Users are able to save articles for later and will persist in the New[sic] app's core data.  At the bottom of this initial search view, users can skip searching for articles and tap the saved icon to access the saved articles in the saved view
 straight from this initial search view.
 
+![nsearchscreen](https://user-images.githubusercontent.com/20981744/49249109-a4501f80-f3d8-11e8-9296-782ed96066d6.png)
+
 ### News View:
 • Users can look at different news articles found by swiping up and down on this view shown by different rows of information.
 
@@ -33,6 +35,8 @@ straight from this initial search view.
 • Users can return to the initial search view by tapping the Search button at the top left of the screen.
 
 • If users would like to access the saved articles, they can tap the "Saved Articles" button at the top right of the screen.
+
+![nnewsscreen](https://user-images.githubusercontent.com/20981744/49249080-969a9a00-f3d8-11e8-849d-5d84f5ca5f4a.png)
 
 ### Saved Articles View:
 • Users can look at different saved articles found by swiping up and down on this view shown by different rows of information.
@@ -50,6 +54,8 @@ straight from this initial search view.
 • If the user accessed the saved articles view from the news view, they can return to the news view by tapping on the back button to the top left of the screen.
 
 • If the user accessed the saved articles view from the search view, they can return to the search view by tapping on the Search tab at the bottom left of the screen
+
+![nsavedscreen](https://user-images.githubusercontent.com/20981744/49249130-add98780-f3d8-11e8-8895-289482f061b5.png)
 
 #### Attribution:
 A special thank you to Wyatt Mufson: Attribution to ideas on how to code the newsAPIManager.swift and NewsClient.swift:
