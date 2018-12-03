@@ -22,11 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIInterfaceOrientationMask.portrait
     }
     
-    
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // change status bar to light to see in dark backgrounds of views
         UINavigationBar.appearance().barStyle = .blackOpaque
         return true
     }
