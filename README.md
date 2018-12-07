@@ -21,7 +21,7 @@ users will be brought to all the news articles the app found in the news view.
 • Users are able to save articles for later and will persist in the New[sic] app's core data.  At the bottom of this initial search view, users can skip searching for articles and tap the saved icon to access the saved articles in the saved view
 straight from this initial search view.
 
-![nsearchscreen](https://user-images.githubusercontent.com/20981744/49249109-a4501f80-f3d8-11e8-9296-782ed96066d6.png)
+![screen shot 2018-12-06 at 12 05 40 pm](https://user-images.githubusercontent.com/20981744/49664343-d4b64000-fa0e-11e8-97f1-1ef4355bce20.png)
 
 ### News View:
 • Users can look at different news articles found by swiping up and down on this view shown by different rows of information.
@@ -36,7 +36,7 @@ straight from this initial search view.
 
 • If users would like to access the saved articles, they can tap the "Saved Articles" button at the top right of the screen.
 
-![nnewsscreen](https://user-images.githubusercontent.com/20981744/49249080-969a9a00-f3d8-11e8-849d-5d84f5ca5f4a.png)
+![screen shot 2018-12-06 at 12 06 32 pm](https://user-images.githubusercontent.com/20981744/49664365-ef88b480-fa0e-11e8-8811-cf103cfb4a08.png)
 
 ### Saved Articles View:
 • Users can look at different saved articles found by swiping up and down on this view shown by different rows of information.
@@ -55,7 +55,7 @@ straight from this initial search view.
 
 • If the user accessed the saved articles view from the search view, they can return to the search view by tapping on the Search tab at the bottom left of the screen
 
-![nsavedscreen](https://user-images.githubusercontent.com/20981744/49249130-add98780-f3d8-11e8-8895-289482f061b5.png)
+![screen shot 2018-12-06 at 12 01 37 pm](https://user-images.githubusercontent.com/20981744/49664373-f44d6880-fa0e-11e8-9510-d716eb94be95.png)
 
 #### Attribution:
 A special thank you to Wyatt Mufson: Attribution to ideas on how to code the newsAPIManager.swift and NewsClient.swift:
